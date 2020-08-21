@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class User {
+
+    @Id
+    @GeneratedValue
     private Integer id;
 
     private String firstName;
