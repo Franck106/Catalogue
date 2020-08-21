@@ -1,4 +1,4 @@
-package fr.eql.webservices.team1.project1;
+package fr.eql.teama.catalogue.webservices.team1.project1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

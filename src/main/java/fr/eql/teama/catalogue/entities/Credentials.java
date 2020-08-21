@@ -1,35 +1,27 @@
-package fr.eql.project1.entities;
+package fr.eql.teama.catalogue.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Locale;
+import javax.persistence.OneToOne;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class Proposal {
+@Entity
+public class Credentials {
 
     @Id
     @GeneratedValue
     private Integer id;
+    private String login;
+    private String hashedPassword;
 
-    private String name;
-
-    private String image;
-
-    private String description;
-
-    private Double price;
-
-    private Category category;
-
+    @OneToOne
     private User user;
-
-    private Service service;
-
 
 }
