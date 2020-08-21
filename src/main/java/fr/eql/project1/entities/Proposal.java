@@ -1,7 +1,14 @@
 package fr.eql.project1.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Locale;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class Proposal {
     private Integer id;
 
