@@ -1,4 +1,15 @@
 # al35-project1
+
+Public AWS URL : 
+
+http://firstcatalogue-env-1.eba-tmntubkv.eu-west-3.elasticbeanstalk.com
+
+This project is part of TeamA's Freelancer project :
+- https://github.com/Franck106/Team-A-Catalogue
+- https://github.com/Franck106/Team-A-Front
+- https://github.com/melapal3/Team-A-Orchestrateur
+- https://github.com/pckerneis/Team-A-Messenger
+
 ##Process de résolution de ticket
 
 Récupérer le code avec
@@ -38,5 +49,6 @@ Un lien est ensuite donné pour créer une pull request sur Github.
 En validant la pull request sur Github, celle-ci est alors accessible par les collaborateurs.
 
 
-##Approuver et fusionner avec la branche master
+## Fusionner plusieurs commits d'une branche feature en un commit sur master
+
 TODO
