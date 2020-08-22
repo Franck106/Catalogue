@@ -10,7 +10,7 @@ This project is part of TeamA's Freelancer project :
 - https://github.com/melapal3/Team-A-Orchestrateur
 - https://github.com/pckerneis/Team-A-Messenger
 
-##Process de résolution de ticket
+## Process de résolution de ticket
 
 Récupérer le code avec
  ```git pull```
@@ -35,7 +35,7 @@ Le message de commit doit avoir la forme "ID branche + Nom du ticket". Par exemp
 CAT-11 First git ticket Pierre #11
 ```
 
-##Créer une pull request
+## Créer une pull request
 ```
  git push -f
 ```
