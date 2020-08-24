@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,7 +14,7 @@ import javax.persistence.*;
 public class Proposal {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
@@ -30,8 +31,8 @@ public class Proposal {
     @ManyToOne
     private User user;
 
-    @OneToOne
-    private Prestation prestation;
+    @OneToMany(mappedBy = "proposal")
+    private List<Prestation> prestations;
 
 
 }

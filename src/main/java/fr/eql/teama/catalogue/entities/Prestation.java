@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -17,10 +14,12 @@ import java.util.Date;
 public class Prestation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Date startDate;
+
+    private Date endDate;
 
     private Integer customerRating;
 
@@ -30,9 +29,10 @@ public class Prestation {
 
     private Boolean cancelled;
 
-    private String endDate;
-
     @OneToOne
+    private User customer;
+
+    @ManyToOne
     private Proposal proposal;
 
 }
