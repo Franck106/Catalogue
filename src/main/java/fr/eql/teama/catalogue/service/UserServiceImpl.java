@@ -5,11 +5,9 @@ import fr.eql.teama.catalogue.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.WebService;
 import javax.transaction.Transactional;
 
 @Service
-@WebService(endpointInterface = "fr.eql.teama.catalogue.service.UserServiceImpl")
 @Transactional
 public class UserServiceImpl implements UserService {
 
