@@ -1,18 +1,20 @@
 package fr.eql.teama.catalogue.init;
 
 import fr.eql.teama.catalogue.dao.CategoryRepository;
+import fr.eql.teama.catalogue.dao.PrestationRepository;
+import fr.eql.teama.catalogue.dao.ProposalRepository;
 import fr.eql.teama.catalogue.dao.UserRepository;
 import fr.eql.teama.catalogue.entities.Category;
+import fr.eql.teama.catalogue.entities.Prestation;
 import fr.eql.teama.catalogue.entities.Proposal;
-import fr.eql.teama.catalogue.entities.Service;
 import fr.eql.teama.catalogue.entities.User;
-import fr.eql.teama.catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.Date;
 
 
 @Profile("initData")
@@ -21,19 +23,25 @@ import javax.transaction.Transactional;
 public class InitDataSet {
 
 	@Autowired
-	private UserService userService;
-
-	@Autowired
 	private UserRepository userRepository;
 
 	@Autowired
 	private CategoryRepository categoryRepository;
+
+	@Autowired
+	private PrestationRepository prestationRepository;
+
+	@Autowired
+	private ProposalRepository proposalRepository;
 
 	@PostConstruct()
 	public void initData() {
 		// Insert categories
 		Category sante = insertCategory(1, "Santé, bien-être", null);
 		insertCategory(2, "Massage", sante);
+		insertCategory(3, "Manucure", sante);
+		insertCategory(4, "Soins esthétiques", sante);
+		insertCategory(5, "Coiffure", sante);
 
 		Category aide = insertCategory(10, "Aide à la personne", null);
 		insertCategory(11, "Aide scolaire", aide);
@@ -62,7 +70,11 @@ public class InitDataSet {
 		Category animaux = insertCategory(40, "Animaux", null);
 		insertCategory(41, "Garde d'animaux", animaux);
 
-		insertCategory(50, "Informatique", null);
+		Category info = insertCategory(50, "Informatique", null);
+		insertCategory(51, "Réseaux sociaux", info);
+		insertCategory(52, "Installation d'un ordinateur", info);
+		insertCategory(53, "Programmation", info);
+		insertCategory(54, "Dépannage informatique", info);
 
 		// Insert clients
 		insertUser("Vivien", "Dujardin", "vivien.dujardin@mail.com", "63 Rue Voltaire", "94110", "Arcueil", "0603010001", 1, "91567528914673");
@@ -333,45 +345,51 @@ public class InitDataSet {
 		insertProposal("Eléctricité", "Etant électricien de formation ,avec une forte compétence dans ce domaine ,je me ferai un grand plaisir de pouvoir vous aider .", "electricite.png", 12, 37, 46);
 
 		// Insert services
-		insertService(1, 23, 76, 1, 0, 4, 0);
-		insertService(2, 7, 47, 1, 0, 5, 4);
-		insertService(3, 37, 51, 1, 1, 2, 5);
-		insertService(4, 20, 41, 1, 1, 5, 0);
-		insertService(5, 25, 42, 1, 1, 2, 4);
-		insertService(6, 38, 61, 1, 1, 4, 5);
-		insertService(7, 8, 40, 1, 0, 2, 2);
-		insertService(8, 46, 68, 0, 1, 5, 3);
-		insertService(9, 34, 83, 0, 1, 4, 2);
-		insertService(10, 3, 16, 0, 0, 3, 5);
-		insertService(11, 35, 96, 0, 1, 1, 3);
-		insertService(12, 19, 65, 0, 1, 2, 5);
-		insertService(13, 4, 67, 1, 1, 1, 1);
-		insertService(14, 19, 67, 1, 0, 2, 1);
-		insertService(15, 20, 98, 0, 0, 3, 1);
-		insertService(16, 35, 85, 1, 0, 2, 4);
-		insertService(17, 34, 49, 1, 1, 4, 1);
-		insertService(18, 31, 41, 0, 1, 1, 4);
-		insertService(19, 30, 80, 1, 1, 1, 3);
-		insertService(20, 20, 60, 0, 1, 0, 3);
-		insertService(21, 39, 52, 0, 0, 0, 2);
-		insertService(22, 10, 35, 1, 0, 3, 1);
-		insertService(23, 5, 97, 1, 1, 3, 1);
-		insertService(24, 25, 98, 0, 1, 0, 1);
-		insertService(25, 8, 91, 1, 0, 1, 0);
-		insertService(26, 47, 11, 1, 0, 4, 1);
-		insertService(27, 40, 83, 1, 1, 0, 3);
-		insertService(28, 32, 7, 1, 0, 3, 0);
+		insertPrestation(1, 23, 76, 1, 0, 4, 0);
+		insertPrestation(2, 7, 47, 1, 0, 5, 4);
+		insertPrestation(3, 37, 51, 1, 1, 2, 5);
+		insertPrestation(4, 20, 41, 1, 1, 5, 0);
+		insertPrestation(5, 25, 42, 1, 1, 2, 4);
+		insertPrestation(6, 38, 61, 1, 1, 4, 5);
+		insertPrestation(7, 8, 40, 1, 0, 2, 2);
+		insertPrestation(8, 46, 68, 0, 1, 5, 3);
+		insertPrestation(9, 34, 83, 0, 1, 4, 2);
+		insertPrestation(10, 3, 16, 0, 0, 3, 5);
+		insertPrestation(11, 35, 96, 0, 1, 1, 3);
+		insertPrestation(12, 19, 65, 0, 1, 2, 5);
+		insertPrestation(13, 4, 67, 1, 1, 1, 1);
+		insertPrestation(14, 19, 67, 1, 0, 2, 1);
+		insertPrestation(15, 20, 98, 0, 0, 3, 1);
+		insertPrestation(16, 35, 85, 1, 0, 2, 4);
+		insertPrestation(17, 34, 49, 1, 1, 4, 1);
+		insertPrestation(18, 31, 41, 0, 1, 1, 4);
+		insertPrestation(19, 30, 80, 1, 1, 1, 3);
+		insertPrestation(20, 20, 60, 0, 1, 0, 3);
+		insertPrestation(21, 39, 52, 0, 0, 0, 2);
+		insertPrestation(22, 10, 35, 1, 0, 3, 1);
+		insertPrestation(23, 5, 97, 1, 1, 3, 1);
+		insertPrestation(24, 25, 98, 0, 1, 0, 1);
+		insertPrestation(25, 8, 91, 1, 0, 1, 0);
+		insertPrestation(26, 47, 11, 1, 0, 4, 1);
+		insertPrestation(27, 40, 83, 1, 1, 0, 3);
+		insertPrestation(28, 32, 7, 1, 0, 3, 0);
 	}
 
-	private void insertService(int id, int proposalId, int clientId, int finished, int cancelled, int ratingClient, int ratingProvider) {
-		Service service = new Service();
-		service.setId(id);
-		service.setCancelled(cancelled == 1);
-		service.setDelivered(finished == 1);
-		service.setCustomerRating(ratingClient);
-		service.setProviderRating(ratingProvider);
+	private void insertPrestation(int id, int proposalId, int customerId, int finished, int cancelled, int ratingClient, int ratingProvider) {
+		Prestation prestation = new Prestation();
+		prestation.setId(id);
+		prestation.setProposal(proposalRepository.findById(proposalId).orElse(null));
+		prestation.setCustomer(userRepository.findById(customerId).orElse(null));
+		prestation.setCancelled(cancelled == 1);
+		prestation.setDelivered(finished == 1);
+		prestation.setCustomerRating(ratingClient);
+		prestation.setProviderRating(ratingProvider);
 
-		// TODO: start/end dates, client id, proposal id
+		// TODO
+		prestation.setStartDate(new Date());
+		prestation.setEndDate(new Date());
+
+		prestationRepository.save(prestation);
 	}
 
 	private void insertProposal(String name, String description, String picture, int price, int categoryId, int userId) {
@@ -380,10 +398,10 @@ public class InitDataSet {
 		proposal.setDescription(description);
 		proposal.setImage(picture);
 		proposal.setPrice((double)price);
+		proposal.setCategory(categoryRepository.findById(categoryId).orElse(null));
+		proposal.setUser(userRepository.findById(userId).orElse(null));
 
-		// TODO
-		// proposal.setCategory(picture);
-		// proposal.setUser(userId);
+		proposalRepository.save(proposal);
 	}
 
 	private void insertUser(String firstName, String lastName, String email, String address, String postalCode, String city, String phone, int premium, String registrationNumber) {
@@ -406,6 +424,7 @@ public class InitDataSet {
 		category.setId(id);
 		category.setName(name);
 		category.setCategory(parentCategory);
+
 		return categoryRepository.save(category);
 	}
 }

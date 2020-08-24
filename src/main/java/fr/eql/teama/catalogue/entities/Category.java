@@ -15,7 +15,7 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
@@ -24,11 +24,11 @@ public class Category {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     @JsonIgnore
-    private List<Category> categories = new ArrayList<Category> ();
+    private List<Category> categories = new ArrayList<> ();
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore
-    private List<Proposal> proposals = new ArrayList<Proposal> ();
+    private List<Proposal> proposals = new ArrayList<> ();
 
     @ManyToOne
     private  Category category;

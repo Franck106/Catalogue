@@ -16,7 +16,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String firstName;
@@ -48,7 +48,7 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @JsonIgnore
-    private List<Proposal> proposals = new ArrayList<Proposal> ();
+    private List<Proposal> proposals = new ArrayList<> ();
 
     public User (String firstName) {
         this.firstName = firstName;
