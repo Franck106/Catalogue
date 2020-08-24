@@ -31,7 +31,7 @@ public class Proposal {
     private User user;
 
     @OneToOne
-    private Service service;
+    private Prestation prestation;
 
 
 }

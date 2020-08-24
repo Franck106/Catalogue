@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Service {
+public class Prestation {
 
     @Id
     @GeneratedValue
