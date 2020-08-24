@@ -1,5 +1,6 @@
 package fr.eql.teama.catalogue.init;
 
+import fr.eql.teama.catalogue.dao.CategoryRepository;
 import fr.eql.teama.catalogue.dao.UserRepository;
 import fr.eql.teama.catalogue.entities.Category;
 import fr.eql.teama.catalogue.entities.Proposal;
@@ -11,10 +12,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 
 @Profile("initData")
 @Component
+@Transactional
 public class InitDataSet {
 
 	@Autowired
@@ -22,37 +25,43 @@ public class InitDataSet {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 	@PostConstruct()
 	public void initData() {
-		User user = userService.addUser(new User("alice"));
-
 		// Insert categories
-		insertCategory(1, "Santé, bien-être", null);
-		insertCategory(2, "Massage", 1);
-		insertCategory(10, "Aide à la personne", null);
-		insertCategory(11, "Aide scolaire", 10);
-		insertCategory(12, "Garde d'enfants", 10);
-		insertCategory(13, "Assistance aux personnes âgées", 10);
-		insertCategory(14, "Assistance informatique", 10);
-		insertCategory(15, "Aide au déménagement", 10);
-		insertCategory(20, "Arts et création", null);
-		insertCategory(21, "Photographie et vidéo", 20);
-		insertCategory(22, "Musique et son", 20);
-		insertCategory(23, "Illustration et infographie", 20);
-		insertCategory(24, "Arts plastiques", 20);
-		insertCategory(25, "Arts numériques et multimédia", 20);
-		insertCategory(30, "Maison et jardin", null);
-		insertCategory(31, "Jardinage", 30);
-		insertCategory(32, "Repassage", 30);
-		insertCategory(33, "Ménage", 30);
-		insertCategory(34, "Lavage automobile", 30);
-		insertCategory(35, "Bricolage, petit travaux", 30);
-		insertCategory(36, "Plomberie", 30);
-		insertCategory(37, "Electricité", 30);
-		insertCategory(38, "Sols et terrassement", 30);
-		insertCategory(40, "Animaux", null);
-		insertCategory(41, "Garde d'animaux", 40);
+		Category sante = insertCategory(1, "Santé, bien-être", null);
+		insertCategory(2, "Massage", sante);
+
+		Category aide = insertCategory(10, "Aide à la personne", null);
+		insertCategory(11, "Aide scolaire", aide);
+		insertCategory(12, "Garde d'enfants", aide);
+		insertCategory(13, "Assistance aux personnes âgées", aide);
+		insertCategory(14, "Assistance informatique", aide);
+		insertCategory(15, "Aide au déménagement", aide);
+
+		Category arts = insertCategory(20, "Arts et création", null);
+		insertCategory(21, "Photographie et vidéo", arts);
+		insertCategory(22, "Musique et son", arts);
+		insertCategory(23, "Illustration et infographie", arts);
+		insertCategory(24, "Arts plastiques", arts);
+		insertCategory(25, "Arts numériques et multimédia", arts);
+
+		Category maison = insertCategory(30, "Maison et jardin", null);
+		insertCategory(31, "Jardinage", maison);
+		insertCategory(32, "Repassage", maison);
+		insertCategory(33, "Ménage", maison);
+		insertCategory(34, "Lavage automobile", maison);
+		insertCategory(35, "Bricolage, petit travaux", maison);
+		insertCategory(36, "Plomberie", maison);
+		insertCategory(37, "Electricité", maison);
+		insertCategory(38, "Sols et terrassement", maison);
+
+		Category animaux = insertCategory(40, "Animaux", null);
+		insertCategory(41, "Garde d'animaux", animaux);
+
 		insertCategory(50, "Informatique", null);
 
 		// Insert clients
@@ -392,13 +401,11 @@ public class InitDataSet {
 		userRepository.save(user);
 	}
 
-	private void insertCategory(int id, String name, Integer parentId) {
+	private Category insertCategory(int id, String name, Category parentCategory) {
 		Category category = new Category();
 		category.setId(id);
 		category.setName(name);
-
-		// TODO
-		// set parent
+		category.setCategory(parentCategory);
+		return categoryRepository.save(category);
 	}
-
 }
