@@ -1,4 +1,4 @@
-package fr.eql.webservices.team1.project1;
+package fr.eql.teama.catalogue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.html",
                 "/**/*.css",
                 "/**/*.js").permitAll()
-        //.antMatchers("/api/public/**").permitAll()
+        .antMatchers("/api/**").permitAll()
         //.antMatchers("/api/private/**").authenticated()
         .antMatchers("/**").permitAll()
         //.and().formLogin().permitAll()

@@ -1,17 +1,18 @@
-package fr.eql.project1.entities;
+package fr.eql.teama.catalogue.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 public class User {
 
     @Id
@@ -42,9 +43,16 @@ public class User {
 
     private String image;
 
+    @OneToOne
     private Credentials credentials;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private List<Proposal> proposals = new ArrayList<Proposal> ();
+
+    public User (String firstName) {
+        this.firstName = firstName;
+    }
 
 
 }
