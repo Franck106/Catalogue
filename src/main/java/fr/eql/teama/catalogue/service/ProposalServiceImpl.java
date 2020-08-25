@@ -23,8 +23,8 @@ public class ProposalServiceImpl implements ProposalService{
     }
 
     @Override
-    public Optional<Proposal> getProposalById(Integer id) {
-        return proposalRepository.findById(id);
+    public Proposal getProposalById(Integer id) {
+        return proposalRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -49,5 +49,16 @@ public class ProposalServiceImpl implements ProposalService{
         } catch (Exception e) {
             throw new RuntimeException();
         }
+    }
+
+    @Override
+    public boolean checkProposalExistForUser(Proposal proposal) {
+        List<Proposal> userProposals = proposalRepository.findAllByUser(proposal.getUser());
+        for (Proposal p : userProposals) {
+            if(p.getUser().getId() == proposal.getUser().getId()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
