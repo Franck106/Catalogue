@@ -7,9 +7,10 @@ import java.util.Optional;
 
 public interface ProposalService {
     List<Proposal> getProposalList();
-    Optional<Proposal> getProposalById(Integer id);
+    Proposal getProposalById(Integer id);
     List<Proposal> getProposalsByName(String name);
     Proposal addProposal(Proposal proposal);
     Proposal modifyProposal(Proposal proposal);
     void removeProposal(Integer id);
+    boolean checkProposalExistForUser(Proposal proposal);
 }
