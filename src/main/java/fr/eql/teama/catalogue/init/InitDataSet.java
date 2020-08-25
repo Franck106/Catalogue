@@ -37,27 +37,28 @@ public class InitDataSet {
 	@PostConstruct()
 	public void initData() {
 		// Insert categories
-		Category sante = insertCategory(1, "Santé, bien-être", null);
+		Category sante = insertCategory(1, "Santé, bien-être", "bien_etre.png");
 		insertCategory(2, "Massage", sante);
 		insertCategory(3, "Manucure", sante);
 		insertCategory(4, "Soins esthétiques", sante);
 		insertCategory(5, "Coiffure", sante);
 
-		Category aide = insertCategory(10, "Aide à la personne", null);
+		Category aide = insertCategory(10, "Aide à la personne", "garde_enfant.png");
 		insertCategory(11, "Aide scolaire", aide);
 		insertCategory(12, "Garde d'enfants", aide);
 		insertCategory(13, "Assistance aux personnes âgées", aide);
 		insertCategory(14, "Assistance informatique", aide);
 		insertCategory(15, "Aide au déménagement", aide);
+		insertCategory(16, "Garde d'animaux", aide);
 
-		Category arts = insertCategory(20, "Arts et création", null);
+		Category arts = insertCategory(20, "Arts et création", "arts.png");
 		insertCategory(21, "Photographie et vidéo", arts);
 		insertCategory(22, "Musique et son", arts);
 		insertCategory(23, "Illustration et infographie", arts);
 		insertCategory(24, "Arts plastiques", arts);
 		insertCategory(25, "Arts numériques et multimédia", arts);
 
-		Category maison = insertCategory(30, "Maison et jardin", null);
+		Category maison = insertCategory(30, "Maison et jardin", "jardinage.png");
 		insertCategory(31, "Jardinage", maison);
 		insertCategory(32, "Repassage", maison);
 		insertCategory(33, "Ménage", maison);
@@ -67,10 +68,7 @@ public class InitDataSet {
 		insertCategory(37, "Electricité", maison);
 		insertCategory(38, "Sols et terrassement", maison);
 
-		Category animaux = insertCategory(40, "Animaux", null);
-		insertCategory(41, "Garde d'animaux", animaux);
-
-		Category info = insertCategory(50, "Informatique", null);
+		Category info = insertCategory(50, "Informatique", "informatique.png");
 		insertCategory(51, "Réseaux sociaux", info);
 		insertCategory(52, "Installation d'un ordinateur", info);
 		insertCategory(53, "Programmation", info);
@@ -419,11 +417,22 @@ public class InitDataSet {
 		userRepository.save(user);
 	}
 
+	private Category insertCategory(int id, String name, String picture) {
+		Category category = new Category();
+		category.setId(id);
+		category.setName(name);
+		category.setCategory(null);
+		category.setImage(picture);
+
+		return categoryRepository.save(category);
+	}
+
 	private Category insertCategory(int id, String name, Category parentCategory) {
 		Category category = new Category();
 		category.setId(id);
 		category.setName(name);
 		category.setCategory(parentCategory);
+		category.setImage(parentCategory.getImage());
 
 		return categoryRepository.save(category);
 	}

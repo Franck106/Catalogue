@@ -15,7 +15,6 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
@@ -31,6 +30,8 @@ public class Category {
     private List<Proposal> proposals = new ArrayList<> ();
 
     @ManyToOne
-    private  Category category;
+    private Category category;
+
+    private String image;
 
 }
