@@ -40,7 +40,6 @@ public class ProposalController {
                     throw new ProposalException("AUCUNE DONNÉE TROUVÉE");
                 }
             }
-
     }
 
     @GetMapping(value = "/proposals/{id}")
