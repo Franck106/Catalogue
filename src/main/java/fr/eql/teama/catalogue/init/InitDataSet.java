@@ -1,19 +1,15 @@
 package fr.eql.teama.catalogue.init;
 
-import fr.eql.teama.catalogue.dao.CategoryRepository;
-import fr.eql.teama.catalogue.dao.PrestationRepository;
-import fr.eql.teama.catalogue.dao.ProposalRepository;
-import fr.eql.teama.catalogue.dao.UserRepository;
-import fr.eql.teama.catalogue.entities.Category;
-import fr.eql.teama.catalogue.entities.Prestation;
-import fr.eql.teama.catalogue.entities.Proposal;
-import fr.eql.teama.catalogue.entities.User;
+import fr.eql.teama.catalogue.dao.*;
+import fr.eql.teama.catalogue.entities.*;
+import fr.eql.teama.catalogue.service.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 
@@ -34,8 +30,14 @@ public class InitDataSet {
 	@Autowired
 	private ProposalRepository proposalRepository;
 
+	@Autowired
+	private CredentialsRepository credentialsRepository;
+
+	@Autowired
+	private CredentialsService credentialsService;
+
 	@PostConstruct()
-	public void initData() {
+	public void initData() throws NoSuchAlgorithmException {
 		// Insert categories
 		Category sante = insertCategory(1, "Santé, bien-être", "bien_etre.png");
 		insertCategory(2, "Massage", sante);
@@ -276,6 +278,14 @@ public class InitDataSet {
 		insertUser("Joy", "Bonsaint", "joy.bonsaint@mail.com", "62 rue Petite Fusterie", "1000", "Bourg-en-bresse", "0603010199", 0, "");
 		insertUser("Tearlach", "Sarrazin", "tearlach.sarrazin@mail.com", "13 rue de l'Aigle", "17000", "La Rochelle", "0603010194", 1, "");
 
+		//Insert credentials
+		Credentials credentials1 = insertCredentials("login1", "pwd1");
+		Credentials credentials2 = insertCredentials("login2", "pwd2");
+
+		//Link user to credentials
+		addCredentialsToUser(1,credentials1.getId());
+		addCredentialsToUser(2, credentials2.getId());
+
 		// Insert proposals
 		insertProposal("Bricolage - Petits travaux", "Bricoleur habitué à monter des poignées de cuisine sur petite cuisine aménagée, je propose mes services.", "bricolage.png", 50, 35, 49);
 		insertProposal("Bricolage - Petits travaux", "Je suis une personne compétente pour remplacer le carrelage, n'hésitez pas, je suis disponible immédiatement.", "bricolage.png", 40, 35, 35);
@@ -435,5 +445,23 @@ public class InitDataSet {
 		category.setImage(parentCategory.getImage());
 
 		return categoryRepository.save(category);
+	}
+
+	private Credentials insertCredentials(String login, String password) throws NoSuchAlgorithmException {
+		String hashPassword = credentialsService.hash(password);
+		Credentials credentials = new Credentials();
+		credentials.setLogin(login);
+		credentials.setHashedPassword(hashPassword);
+		return credentialsRepository.save(credentials);
+	}
+
+	private void addCredentialsToUser(Integer idUser, Integer idCredentials) {
+		User user = userRepository.findById(idUser).get();
+		Credentials credentials = credentialsRepository.findById(idCredentials).get();
+		user.setCredentials(credentials);
+		user = userRepository.save(user);
+		credentials.setUser(user);
+		credentials = credentialsRepository.save(credentials);
+		userRepository.save(user);
 	}
 }
