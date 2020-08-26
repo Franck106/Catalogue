@@ -29,7 +29,7 @@ public class Proposal {
     private Category category;
 
     @ManyToOne
-    private User user;
+    private User provider;
 
     @OneToMany(mappedBy = "proposal")
     private List<Prestation> prestations;

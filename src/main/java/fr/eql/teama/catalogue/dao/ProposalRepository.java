@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ProposalRepository extends CrudRepository<Proposal, Integer> {
     List<Proposal> findAllByName(String name);
-    List<Proposal> findAllByUser(User user);
+    List<Proposal> findAllByProvider(User provider);
 }

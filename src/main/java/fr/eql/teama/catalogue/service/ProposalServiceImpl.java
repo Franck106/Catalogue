@@ -3,12 +3,12 @@ package fr.eql.teama.catalogue.service;
 
 import fr.eql.teama.catalogue.dao.ProposalRepository;
 import fr.eql.teama.catalogue.entities.Proposal;
+import fr.eql.teama.catalogue.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -53,12 +53,15 @@ public class ProposalServiceImpl implements ProposalService{
 
     @Override
     public boolean checkProposalExistForUser(Proposal proposal) {
-        List<Proposal> userProposals = proposalRepository.findAllByUser(proposal.getUser());
+        User user = proposal.getProvider();
+        List<Proposal> userProposals = proposalRepository.findAllByProvider(user);
+
         for (Proposal p : userProposals) {
-            if(p.getUser().getId() == proposal.getUser().getId()) {
+            if (p.getProvider().getId().equals(user.getId())) {
                 return true;
             }
         }
+
         return false;
     }
 }

@@ -1,4 +1,4 @@
-package fr.eql.teama.catalogue.entities;
+package fr.eql.teama.catalogue.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
