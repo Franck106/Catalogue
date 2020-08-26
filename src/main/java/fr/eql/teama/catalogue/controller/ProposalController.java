@@ -1,10 +1,12 @@
 package fr.eql.teama.catalogue.controller;
 
 import fr.eql.teama.catalogue.dto.DeleteResponse;
+import fr.eql.teama.catalogue.dto.ProposalResearchRequest;
 import fr.eql.teama.catalogue.exception.AlreadyExistException;
 import fr.eql.teama.catalogue.entities.Proposal;
 import fr.eql.teama.catalogue.exception.ProposalException;
 import fr.eql.teama.catalogue.exception.UpdateException;
+import fr.eql.teama.catalogue.service.ProposalResearchService;
 import fr.eql.teama.catalogue.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,31 +23,34 @@ public class ProposalController {
     @Autowired
     ProposalService proposalService;
 
+    @Autowired
+    ProposalResearchService proposalResearchService;
+
     @GetMapping(value = "/proposals")
     public List<Proposal> getProposals(@RequestParam(value = "name", required = false) String name)
-        throws ProposalException {
-            if(name==null) {
-                List<Proposal> result = proposalService.getProposalList();
-                if(result != null) {
-                    return result;
-                } else {
-                    throw new ProposalException("AUCUNE DONNÉE TROUVÉE");
-                }
+            throws ProposalException {
+        if (name == null) {
+            List<Proposal> result = proposalService.getProposalList();
+            if (result != null) {
+                return result;
             } else {
-                List<Proposal> result = (List<Proposal>) proposalService.getProposalsByName(name);
-                if(result != null && result.size() > 0) {
-                    return result;
-                } else {
-                    throw new ProposalException("AUCUNE DONNÉE TROUVÉE");
-                }
+                throw new ProposalException("AUCUNE DONNÉE TROUVÉE");
             }
+        } else {
+            List<Proposal> result = (List<Proposal>) proposalService.getProposalsByName(name);
+            if (result != null && result.size() > 0) {
+                return result;
+            } else {
+                throw new ProposalException("AUCUNE DONNÉE TROUVÉE");
+            }
+        }
     }
 
     @GetMapping(value = "/proposals/{id}")
     public ResponseEntity<Proposal> getProposalsByName(@PathVariable("id") Integer id) {
         Proposal proposal = proposalService.getProposalById(id);
         if (proposal != null) {
-            return new ResponseEntity<Proposal>(proposal,HttpStatus.OK);
+            return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -62,7 +67,7 @@ public class ProposalController {
 
     @PutMapping(value = "/proposals")
     public Proposal modifyProposal(@RequestBody Proposal proposal) throws UpdateException {
-        if(proposal.getId() == null) {
+        if (proposal.getId() == null) {
             throw new UpdateException("LE SERVICE À MODIFIER EST INTROUVABLE.");
         }
         Proposal proposal1 = proposalService.getProposalById(proposal.getId());
@@ -75,7 +80,7 @@ public class ProposalController {
     }
 
     @DeleteMapping(value = "proposals/{id}")
-    public ResponseEntity<DeleteResponse> removeProposal(@PathVariable("id") Integer id) throws RuntimeException{
+    public ResponseEntity<DeleteResponse> removeProposal(@PathVariable("id") Integer id) throws RuntimeException {
         try {
             proposalService.removeProposal(id);
             return new ResponseEntity<DeleteResponse>(
@@ -86,7 +91,10 @@ public class ProposalController {
                     DeleteResponse.withError("SERVICE INTROUVABLE"),
                     HttpStatus.NOT_FOUND);
         }
+    }
 
-}
-
+    @PostMapping(value = "/proposals/search")
+    public List<Proposal> addProposal(@RequestBody ProposalResearchRequest request) throws AlreadyExistException {
+        return proposalResearchService.search(request);
+    }
 }
