@@ -10,22 +10,22 @@ import lombok.Setter;
 @Setter
 public class FullUserDto {
     private Integer id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String postCode;
-    private String city;
-    private String phoneNumber;
-    private String email;
+    private String firstName = "";
+    private String lastName = "";
+    private String address = "";
+    private String postCode = "";
+    private String city = "";
+    private String phoneNumber = "";
+    private String email = "";
     private Boolean premium;
     private Boolean admin;
-    private String registrationNumber;
+    private String registrationNumber = "";
     private Integer globalRating;
-    private String image;
+    private String image = "";
 
-    private String login;
-    private String password;
-    private String role;
+    private String login = "";
+    private String password = "";
+    private String role = "DEFAULT";
 
     public static FullUserDto from(User user) {
         FullUserDto dto = new FullUserDto();
@@ -43,6 +43,7 @@ public class FullUserDto {
         dto.setGlobalRating(user.getGlobalRating());
         dto.setImage(user.getImage());
         dto.setLogin(user.getCredentials().getLogin());
+        dto.setPassword(user.getCredentials().getHashedPassword());
         dto.setRole(user.getRole().toString());
 
         return dto;
@@ -50,6 +51,7 @@ public class FullUserDto {
 
     public User toUser() {
         User user = new User();
+        user.setId(getId());
         user.setFirstName(getFirstName());
         user.setLastName(getLastName());
         user.setAddress(getAddress());
@@ -62,6 +64,7 @@ public class FullUserDto {
 
         Credentials credentials = new Credentials();
         credentials.setLogin(getLogin());
+        credentials.setHashedPassword(getPassword());
         user.setCredentials(credentials);
 
         return user;

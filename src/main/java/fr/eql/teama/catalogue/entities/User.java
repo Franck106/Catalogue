@@ -50,7 +50,7 @@ public class User {
     @JsonIgnore
     private List<Proposal> proposals = new ArrayList<> ();
 
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     UserRole role;
 
     public User (String firstName) {
