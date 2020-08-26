@@ -1,5 +1,6 @@
 package fr.eql.teama.catalogue.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +33,7 @@ public class Proposal {
     private User provider;
 
     @OneToMany(mappedBy = "proposal")
+    @JsonIgnore
     private List<Prestation> prestations;
 
 
