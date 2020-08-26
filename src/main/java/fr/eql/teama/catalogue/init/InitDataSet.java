@@ -423,6 +423,7 @@ public class InitDataSet {
 		user.setPhoneNumber(phone);
 		user.setPremium(premium == 1);
 		user.setRegistrationNumber(registrationNumber);
+		user.setRole(UserRole.DEFAULT);
 
 		userRepository.save(user);
 	}

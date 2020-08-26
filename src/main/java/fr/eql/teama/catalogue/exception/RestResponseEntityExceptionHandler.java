@@ -15,7 +15,7 @@ import java.util.Map;
 public class RestResponseEntityExceptionHandler
         extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = { RuntimeException.class })
+    @ExceptionHandler(value = { RestException.class })
     protected ResponseEntity<Object> handleConflict(
             RuntimeException ex, WebRequest request) {
         Map<String, Object> response = Collections.singletonMap("error", ex.getMessage());
