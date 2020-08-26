@@ -397,7 +397,7 @@ public class InitDataSet {
 		proposal.setImage(picture);
 		proposal.setPrice((double)price);
 		proposal.setCategory(categoryRepository.findById(categoryId).orElse(null));
-		proposal.setUser(userRepository.findById(userId).orElse(null));
+		proposal.setProvider(userRepository.findById(userId).orElse(null));
 
 		proposalRepository.save(proposal);
 	}

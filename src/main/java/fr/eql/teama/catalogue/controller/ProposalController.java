@@ -1,10 +1,10 @@
 package fr.eql.teama.catalogue.controller;
 
 import fr.eql.teama.catalogue.dto.DeleteResponse;
-import fr.eql.teama.catalogue.entities.AlreadyExistException;
+import fr.eql.teama.catalogue.exception.AlreadyExistException;
 import fr.eql.teama.catalogue.entities.Proposal;
-import fr.eql.teama.catalogue.entities.ProposalException;
-import fr.eql.teama.catalogue.entities.UpdateException;
+import fr.eql.teama.catalogue.exception.ProposalException;
+import fr.eql.teama.catalogue.exception.UpdateException;
 import fr.eql.teama.catalogue.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")

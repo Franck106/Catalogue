@@ -46,9 +46,12 @@ public class User {
     @OneToOne
     private Credentials credentials;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
     @JsonIgnore
     private List<Proposal> proposals = new ArrayList<> ();
+
+    @ManyToOne
+    UserRole role;
 
     public User (String firstName) {
         this.firstName = firstName;
