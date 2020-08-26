@@ -54,7 +54,7 @@ public class ProposalController {
     @PostMapping(value = "/proposals")
     public Proposal addProposal(@RequestBody Proposal proposal) throws AlreadyExistException {
         if (proposalService.checkProposalExistForUser(proposal)) {
-            throw new AlreadyExistException("CE SERVICE EST DÉJA PROPOSÉ PAR L'UTILISATEUR : " + proposal.getUser().getFirstName());
+            throw new AlreadyExistException("CE SERVICE EST DÉJA PROPOSÉ PAR L'UTILISATEUR : " + proposal.getProvider().getFirstName());
         } else {
             return proposalService.addProposal(proposal);
         }

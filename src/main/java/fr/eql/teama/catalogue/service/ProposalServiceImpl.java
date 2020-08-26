@@ -67,7 +67,7 @@ public class ProposalServiceImpl implements ProposalService{
         List<Proposal> userProposals = proposalRepository.findAllByProvider(user);
 
         for (Proposal p : userProposals) {
-            if (p.getProvider().equalsIgnoreCase(proposal.getName())) {
+            if (p.getName().equalsIgnoreCase(proposal.getName())) {
                 return true;
             }
         }
