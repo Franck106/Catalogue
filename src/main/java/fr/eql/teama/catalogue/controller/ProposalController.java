@@ -30,14 +30,14 @@ public class ProposalController {
                 if(result != null) {
                     return result;
                 } else {
-                    throw new ProposalException("Aucun service trouvé");
+                    throw new ProposalException("AUCUNE DONNÉE TROUVÉE");
                 }
             } else {
                 List<Proposal> result = (List<Proposal>) proposalService.getProposalsByName(name);
                 if(result != null && result.size() > 0) {
                     return result;
                 } else {
-                    throw new ProposalException("Aucun service trouvé");
+                    throw new ProposalException("AUCUNE DONNÉE TROUVÉE");
                 }
             }
 
@@ -56,7 +56,7 @@ public class ProposalController {
     @PostMapping(value = "/proposals")
     public Proposal addProposal(@RequestBody Proposal proposal) throws AlreadyExistException {
         if (proposalService.checkProposalExistForUser(proposal)) {
-            throw new AlreadyExistException("Ce service est déjà proposé par l'utilisateur : " + proposal.getUser().getFirstName());
+            throw new AlreadyExistException("CE SERVICE EST DÉJA PROPOSÉ PAR L'UTILISATEUR : " + proposal.getUser().getFirstName());
         } else {
             return proposalService.addProposal(proposal);
         }
@@ -65,13 +65,13 @@ public class ProposalController {
     @PutMapping(value = "/proposals")
     public Proposal modifyProposal(@RequestBody Proposal proposal) throws UpdateException {
         if(proposal.getId() == null) {
-            throw new UpdateException("Le service à modifier n'existe pas");
+            throw new UpdateException("LE SERVICE À MODIFIER EST INTROUVABLE.");
         }
         Proposal proposal1 = proposalService.getProposalById(proposal.getId());
         if (proposal1 != null) {
             return proposalService.modifyProposal(proposal);
         } else {
-            throw new UpdateException("Le service à modifier n'existe pas");
+            throw new UpdateException("LLE SERVICE À MODIFIER EST INTROUVABLE.");
         }
 
     }
@@ -85,7 +85,7 @@ public class ProposalController {
                     HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<DeleteResponse>(
-                    DeleteResponse.withError("Erreur: tentative de suppression d'un service inexistant"),
+                    DeleteResponse.withError("SERVICE INTROUVABLE"),
                     HttpStatus.NOT_FOUND);
         }
 
