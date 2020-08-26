@@ -26,7 +26,7 @@ public class ProposalController {
     public List<Proposal> getProposals(@RequestParam(value = "name", required = false) String name)
         throws ProposalException {
             if(name==null) {
-                List<Proposal> result = (List<Proposal>) proposalService.getProposalList();
+                List<Proposal> result = proposalService.getProposalList();
                 if(result != null) {
                     return result;
                 } else {

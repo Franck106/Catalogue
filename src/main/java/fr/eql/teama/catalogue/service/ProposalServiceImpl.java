@@ -55,7 +55,7 @@ public class ProposalServiceImpl implements ProposalService{
     public boolean checkProposalExistForUser(Proposal proposal) {
         List<Proposal> userProposals = proposalRepository.findAllByUser(proposal.getUser());
         for (Proposal p : userProposals) {
-            if(p.getUser().getId() == proposal.getUser().getId()) {
+            if(p.getId() == proposal.getId()) {
                 return true;
             }
         }
