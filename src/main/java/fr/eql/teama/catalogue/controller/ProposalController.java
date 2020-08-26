@@ -2,6 +2,7 @@ package fr.eql.teama.catalogue.controller;
 
 import fr.eql.teama.catalogue.dto.DeleteResponse;
 import fr.eql.teama.catalogue.dto.ProposalResearchRequest;
+import fr.eql.teama.catalogue.dto.ProposalResearchResponse;
 import fr.eql.teama.catalogue.exception.AlreadyExistException;
 import fr.eql.teama.catalogue.entities.Proposal;
 import fr.eql.teama.catalogue.exception.ProposalException;
@@ -94,7 +95,7 @@ public class ProposalController {
     }
 
     @PostMapping(value = "/proposals/search")
-    public List<Proposal> addProposal(@RequestBody ProposalResearchRequest request) throws AlreadyExistException {
+    public ProposalResearchResponse searchProposal(@RequestBody ProposalResearchRequest request) throws AlreadyExistException {
         return proposalResearchService.search(request);
     }
 }

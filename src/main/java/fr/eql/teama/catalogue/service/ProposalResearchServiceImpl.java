@@ -2,13 +2,12 @@ package fr.eql.teama.catalogue.service;
 
 import fr.eql.teama.catalogue.dao.ProposalRepository;
 import fr.eql.teama.catalogue.dto.ProposalResearchRequest;
+import fr.eql.teama.catalogue.dto.ProposalResearchResponse;
 import fr.eql.teama.catalogue.entities.Proposal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class ProposalResearchServiceImpl implements ProposalResearchService {
 //    private EntityManager em;
 
     @Override
-    public List<Proposal> search(ProposalResearchRequest request) {
+    public ProposalResearchResponse search(ProposalResearchRequest request) {
         // CriteriaBuilder cb = em.getCriteriaBuilder();
 
         Specification<Proposal> specification = (root, query, builder) -> {
@@ -37,6 +36,8 @@ public class ProposalResearchServiceImpl implements ProposalResearchService {
             return builder.and(predicates.toArray(new Predicate[0]));
         };
 
-        return proposalRepository.findAll(specification);
+        List<Proposal> results = proposalRepository.findAll(specification);
+
+        return new ProposalResearchResponse(results.size(), results);
     }
 }
