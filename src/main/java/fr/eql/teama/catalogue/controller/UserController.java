@@ -1,17 +1,21 @@
 package fr.eql.teama.catalogue.controller;
 
+import fr.eql.teama.catalogue.dto.AuthenticateRequestDto;
 import fr.eql.teama.catalogue.dto.DeleteResponse;
+import fr.eql.teama.catalogue.dto.FullUserDto;
+import fr.eql.teama.catalogue.entities.Credentials;
 import fr.eql.teama.catalogue.entities.User;
+import fr.eql.teama.catalogue.exception.AlreadyExistException;
+import fr.eql.teama.catalogue.service.CredentialsService;
 import fr.eql.teama.catalogue.service.UserService;
-import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -21,10 +25,35 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CredentialsService credentialsService;
+
     // Ajouter un user
     @PostMapping(value = "/users")
-    public User addUser(@RequestBody User newUser){
-        return (User) userService.addUser(newUser);
+    public FullUserDto addUser(@RequestBody FullUserDto newUser){
+        User existing = userService.findUserByLogin(newUser.getLogin());
+
+        if (existing != null) {
+            throw new AlreadyExistException("Un utilisateur existe déjà avec l'identifiant " + newUser.getLogin() + ".");
+        }
+
+        return FullUserDto.from(userService.addUser(newUser.toUser()));
+    }
+
+
+    @PostMapping("/authenticate")
+    FullUserDto authenticate(@RequestBody AuthenticateRequestDto requestDto) {
+        User userWithLogin = userService.findUserByLogin(requestDto.getLogin());
+
+        if (userWithLogin == null) {
+            throw new RuntimeException("Il n'y a pas d'utilisateur avec l'identifiant " + requestDto.getLogin() + ".");
+        }
+
+        if (! credentialsService.hash(requestDto.getPassword()).equals(userWithLogin.getCredentials().getHashedPassword())) {
+            throw new RuntimeException("Erreur de mot de passe.");
+        }
+
+        return FullUserDto.from(userWithLogin);
     }
 
 /*    @GetMapping("/hello")
@@ -35,13 +64,23 @@ public class UserController {
 
     // Modifier un user
     @PutMapping(value = "/users")
-    User updateUser (@RequestBody User user) throws Exception {
-        User existingUser = userService.findUserById(user.getId());
-        if (existingUser == null){
+    FullUserDto updateUser (@RequestBody FullUserDto dto) throws Exception {
+        User existingUser = userService.findUserById(dto.getId());
+
+        if (existingUser == null) {
             throw new Exception("Cet utilisateur n'existe pas.");
         }
-         userService.addUser(user);
-        return user;
+
+        // Keep the credentials because we don't want to overwrite them
+        Credentials previousCredentials = existingUser.getCredentials();
+        User updatedUser = dto.toUser();
+        updatedUser.setCredentials(previousCredentials);
+
+        // Do update the user
+        updatedUser = userService.updateUser(updatedUser);
+
+        // Return it as a DTO
+        return FullUserDto.from(updatedUser);
     }
 
 
