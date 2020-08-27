@@ -11,6 +11,7 @@ public class Project1Application {
 
 		SpringApplication app = new SpringApplication(Project1Application.class);
 		app.setAdditionalProfiles("initData");
+		app.setAdditionalProfiles("apikeys");
 		ConfigurableApplicationContext context = app.run(args);
 		System.out.println("http://localhost:5000/api/proposals");
 		//SpringApplication.run(Project1Application.class, args);
