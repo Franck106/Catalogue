@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Setter @Getter
 public class GeolocationServiceImpl implements GeolocationService, InitializingBean {
 
-    @Value("${keys.gmaps}")
+    @Value("${keys.gmaps:none}")
     private String apiKey;
 
     private GeoApiContext context;
@@ -24,8 +24,6 @@ public class GeolocationServiceImpl implements GeolocationService, InitializingB
     @Override
     public User addGeolocationToUser(User user) {
         user.setGeolocation("");
-
-        System.out.println("Using Google Maps API key : " + System.getenv("GMAPS_API_KEY"));
 
         try {
             String fullAddress = user.getAddress() + " " + user.getPostCode() + " " + user.getCity();
@@ -45,7 +43,7 @@ public class GeolocationServiceImpl implements GeolocationService, InitializingB
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         System.out.println("Using Google Maps API key : " + apiKey);
 
         context = new GeoApiContext.Builder()
