@@ -29,6 +29,8 @@ public class Prestation {
 
     private Boolean cancelled;
 
+    private Boolean valide;
+
     @OneToOne
     private User customer;
 
