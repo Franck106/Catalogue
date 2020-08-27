@@ -2,12 +2,15 @@ package fr.eql.teama.catalogue.service;
 
 import fr.eql.teama.catalogue.dao.PrestationRepository;
 import fr.eql.teama.catalogue.dao.ProposalRepository;
+import fr.eql.teama.catalogue.dao.UserRepository;
 import fr.eql.teama.catalogue.entities.Prestation;
 import fr.eql.teama.catalogue.entities.Proposal;
+import fr.eql.teama.catalogue.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,6 +21,9 @@ public class PrestationServiceImpl implements PrestationService{
 
     @Autowired
     private ProposalRepository proposalRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Prestation addPrestation(Prestation newPresta) {
@@ -32,6 +38,12 @@ public class PrestationServiceImpl implements PrestationService{
     @Override
     public Prestation findById(Integer id) {
         return prestationRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Prestation> findAllPrestationsForUser(Integer id) {
+        User customer = userRepository.findById(id).get();
+        return prestationRepository.findAllByCustomer(customer);
     }
 }
 

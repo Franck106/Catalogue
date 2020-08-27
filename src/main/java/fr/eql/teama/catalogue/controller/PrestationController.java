@@ -36,4 +36,10 @@ public class PrestationController {
         return presta;
     }
 
+    //Get all Prestations for connected user
+    @GetMapping(value = "/prestations/user/{id}")
+    public List<Prestation> getPrestationsForUser(@PathVariable("id") Integer id) {
+        return prestationService.findAllPrestationsForUser(id);
+    }
+
 }
