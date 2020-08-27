@@ -13,4 +13,5 @@ public interface ProposalService {
     Proposal modifyProposal(Proposal proposal);
     void removeProposal(Integer id);
     boolean checkProposalExistForUser(Proposal proposal);
+    List<Proposal> getProposalsByUser(Integer id);
 }
