@@ -22,6 +22,7 @@ public class FullUserDto {
     private String registrationNumber = "";
     private Integer globalRating;
     private String image = "";
+    private String geolocation = "";
 
     private String login = "";
     private String password = "";
@@ -45,6 +46,7 @@ public class FullUserDto {
         dto.setLogin(user.getCredentials().getLogin());
         dto.setPassword(user.getCredentials().getHashedPassword());
         dto.setRole(user.getRole().toString());
+        dto.setGeolocation(user.getGeolocation());
 
         return dto;
     }
@@ -61,6 +63,7 @@ public class FullUserDto {
         user.setEmail(getEmail());
         user.setRole(UserRole.valueOf(getRole()));
         user.setImage(getImage());
+        user.setGeolocation(getGeolocation());
 
         Credentials credentials = new Credentials();
         credentials.setLogin(getLogin());

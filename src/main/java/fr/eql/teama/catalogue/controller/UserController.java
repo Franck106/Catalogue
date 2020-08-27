@@ -6,6 +6,7 @@ import fr.eql.teama.catalogue.dto.FullUserDto;
 import fr.eql.teama.catalogue.entities.Credentials;
 import fr.eql.teama.catalogue.entities.User;
 import fr.eql.teama.catalogue.exception.AlreadyExistException;
+import fr.eql.teama.catalogue.exception.RestException;
 import fr.eql.teama.catalogue.service.CredentialsService;
 import fr.eql.teama.catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +47,11 @@ public class UserController {
         User userWithLogin = userService.findUserByLogin(requestDto.getLogin());
 
         if (userWithLogin == null) {
-            throw new RuntimeException("Il n'y a pas d'utilisateur avec l'identifiant " + requestDto.getLogin() + ".");
+            throw new RestException("Il n'y a pas d'utilisateur avec l'identifiant " + requestDto.getLogin() + ".");
         }
 
         if (! credentialsService.hash(requestDto.getPassword()).equals(userWithLogin.getCredentials().getHashedPassword())) {
-            throw new RuntimeException("Erreur de mot de passe.");
+            throw new RestException("Erreur de mot de passe.");
         }
 
         return FullUserDto.from(userWithLogin);

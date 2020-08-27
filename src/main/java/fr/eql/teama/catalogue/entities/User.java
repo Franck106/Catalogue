@@ -51,7 +51,9 @@ public class User {
     private List<Proposal> proposals = new ArrayList<> ();
 
     @Enumerated(EnumType.STRING)
-    UserRole role;
+    private UserRole role;
+
+    private String geolocation;
 
     public User (String firstName) {
         this.firstName = firstName;

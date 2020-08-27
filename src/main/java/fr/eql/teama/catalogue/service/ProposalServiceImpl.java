@@ -6,6 +6,7 @@ import fr.eql.teama.catalogue.dao.ProposalRepository;
 import fr.eql.teama.catalogue.entities.Category;
 import fr.eql.teama.catalogue.entities.Proposal;
 import fr.eql.teama.catalogue.entities.User;
+import fr.eql.teama.catalogue.exception.RestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +58,7 @@ public class ProposalServiceImpl implements ProposalService{
         try {
             proposalRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new RestException();
         }
     }
 
