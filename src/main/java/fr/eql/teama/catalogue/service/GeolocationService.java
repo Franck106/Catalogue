@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface GeolocationService {
     User addGeolocationToUser(User user);
+    double getDistance(String locationA, String locationB);
 }
