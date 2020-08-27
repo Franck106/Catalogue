@@ -36,5 +36,5 @@ public class Proposal {
     @JsonIgnore
     private List<Prestation> prestations;
 
-
+    private Double maxDistance;
 }
