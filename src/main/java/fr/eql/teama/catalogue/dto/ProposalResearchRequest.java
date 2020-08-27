@@ -8,4 +8,5 @@ import java.util.List;
 @Getter @Setter
 public class ProposalResearchRequest {
     List<Integer> categories;
+    String searchLocation;
 }
