@@ -3,6 +3,7 @@ package fr.eql.teama.catalogue.service;
 
 import fr.eql.teama.catalogue.dao.CategoryRepository;
 import fr.eql.teama.catalogue.dao.ProposalRepository;
+import fr.eql.teama.catalogue.dao.UserRepository;
 import fr.eql.teama.catalogue.entities.Category;
 import fr.eql.teama.catalogue.entities.Proposal;
 import fr.eql.teama.catalogue.entities.User;
@@ -22,6 +23,9 @@ public class ProposalServiceImpl implements ProposalService{
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Proposal> getProposalList() {
@@ -66,13 +70,19 @@ public class ProposalServiceImpl implements ProposalService{
     public boolean checkProposalExistForUser(Proposal proposal) {
         User user = proposal.getProvider();
         List<Proposal> userProposals = proposalRepository.findAllByProvider(user);
-
         for (Proposal p : userProposals) {
             if (p.getName().equalsIgnoreCase(proposal.getName())) {
                 return true;
             }
         }
-
         return false;
     }
+
+    @Override
+    public List<Proposal> getProposalsByUser(Integer id) {
+        User user = userRepository.findById(id).get();
+        return proposalRepository.findAllByProvider(user);
+    }
+
+
 }

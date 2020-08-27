@@ -98,4 +98,9 @@ public class ProposalController {
     public ProposalResearchResponse searchProposal(@RequestBody ProposalResearchRequest request) throws AlreadyExistException {
         return proposalResearchService.search(request);
     }
+
+    @GetMapping(value = "/proposals/user/{id}")
+    public List<Proposal> getProposalsForUser (@PathVariable("id") Integer id) {
+        return proposalService.getProposalsByUser(id);
+    }
 }
