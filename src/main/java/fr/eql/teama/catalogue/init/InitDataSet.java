@@ -353,39 +353,40 @@ public class InitDataSet {
 		insertProposal("Eléctricité", "Etant électricien de formation ,avec une forte compétence dans ce domaine ,je me ferai un grand plaisir de pouvoir vous aider .", "electricite.png", 12, 37, 46);
 
 		// Insert services
-		insertPrestation(1, 23, 76, 1, 0, 4, 0);
-		insertPrestation(2, 7, 47, 1, 0, 5, 4);
-		insertPrestation(3, 37, 51, 1, 1, 2, 5);
-		insertPrestation(4, 20, 41, 1, 1, 5, 0);
-		insertPrestation(5, 25, 42, 1, 1, 2, 4);
-		insertPrestation(6, 38, 61, 1, 1, 4, 5);
-		insertPrestation(7, 8, 40, 1, 0, 2, 2);
-		insertPrestation(8, 46, 68, 0, 1, 5, 3);
-		insertPrestation(9, 34, 83, 0, 1, 4, 2);
-		insertPrestation(10, 3, 16, 0, 0, 3, 5);
-		insertPrestation(11, 35, 96, 0, 1, 1, 3);
-		insertPrestation(12, 19, 65, 0, 1, 2, 5);
-		insertPrestation(13, 4, 67, 1, 1, 1, 1);
-		insertPrestation(14, 19, 67, 1, 0, 2, 1);
-		insertPrestation(15, 20, 98, 0, 0, 3, 1);
-		insertPrestation(16, 35, 85, 1, 0, 2, 4);
-		insertPrestation(17, 34, 49, 1, 1, 4, 1);
-		insertPrestation(18, 31, 41, 0, 1, 1, 4);
-		insertPrestation(19, 30, 80, 1, 1, 1, 3);
-		insertPrestation(20, 20, 60, 0, 1, 0, 3);
-		insertPrestation(21, 39, 52, 0, 0, 0, 2);
-		insertPrestation(22, 10, 35, 1, 0, 3, 1);
-		insertPrestation(23, 5, 97, 1, 1, 3, 1);
-		insertPrestation(24, 25, 98, 0, 1, 0, 1);
-		insertPrestation(25, 8, 91, 1, 0, 1, 0);
-		insertPrestation(26, 47, 11, 1, 0, 4, 1);
-		insertPrestation(27, 40, 83, 1, 1, 0, 3);
-		insertPrestation(28, 32, 7, 1, 0, 3, 0);
+		insertPrestation(1, false, 23, 76, 1, 0, 4, 0);
+		insertPrestation(2, false, 7, 47, 1, 0, 5, 4);
+		insertPrestation(3, false, 37, 51, 1, 1, 2, 5);
+		insertPrestation(4, false, 20, 41, 1, 1, 5, 0);
+		insertPrestation(5, false, 25, 42, 1, 1, 2, 4);
+		insertPrestation(6, false, 38, 61, 1, 1, 4, 5);
+		insertPrestation(7, false, 8, 40, 1, 0, 2, 2);
+		insertPrestation(8, false, 46, 68, 0, 1, 5, 3);
+		insertPrestation(9, false, 34, 83, 0, 1, 4, 2);
+		insertPrestation(10, false, 3, 16, 0, 0, 3, 5);
+		insertPrestation(11, false, 35, 96, 0, 1, 1, 3);
+		insertPrestation(12, false, 19, 65, 0, 1, 2, 5);
+		insertPrestation(13, false, 4, 67, 1, 1, 1, 1);
+		insertPrestation(14, false, 19, 67, 1, 0, 2, 1);
+		insertPrestation(15, false, 20, 98, 0, 0, 3, 1);
+		insertPrestation(16, false, 35, 85, 1, 0, 2, 4);
+		insertPrestation(17, false, 34, 49, 1, 1, 4, 1);
+		insertPrestation(18, false, 31, 41, 0, 1, 1, 4);
+		insertPrestation(19, false, 30, 80, 1, 1, 1, 3);
+		insertPrestation(20, false, 20, 60, 0, 1, 0, 3);
+		insertPrestation(21, false, 39, 52, 0, 0, 0, 2);
+		insertPrestation(22, false, 10, 35, 1, 0, 3, 1);
+		insertPrestation(23, false, 5, 97, 1, 1, 3, 1);
+		insertPrestation(24, false, 25, 98, 0, 1, 0, 1);
+		insertPrestation(25, false, 8, 91, 1, 0, 1, 0);
+		insertPrestation(26, false, 47, 11, 1, 0, 4, 1);
+		insertPrestation(27, false, 40, 83, 1, 1, 0, 3);
+		insertPrestation(28, false, 32, 7, 1, 0, 3, 0);
 	}
 
-	private void insertPrestation(int id, int proposalId, int customerId, int finished, int cancelled, int ratingClient, int ratingProvider) {
+	private void insertPrestation(int id, boolean valide, int proposalId, int customerId, int finished, int cancelled, int ratingClient, int ratingProvider) {
 		Prestation prestation = new Prestation();
 		prestation.setId(id);
+		prestation.setValide(valide);
 		prestation.setProposal(proposalRepository.findById(proposalId).orElse(null));
 		prestation.setCustomer(userRepository.findById(customerId).orElse(null));
 		prestation.setCancelled(cancelled == 1);
