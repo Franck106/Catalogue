@@ -1,5 +1,6 @@
 package fr.eql.teama.catalogue.controller;
 
+import fr.eql.teama.catalogue.dto.PrestationDto;
 import fr.eql.teama.catalogue.entities.Prestation;
 import fr.eql.teama.catalogue.entities.Proposal;
 import fr.eql.teama.catalogue.service.PrestationService;
@@ -19,10 +20,16 @@ public class PrestationController {
 
 
     //ajout
-    @PostMapping(value = "/prestation")
+   /* @PostMapping(value = "/prestation")
     Prestation addPrestation (@RequestBody Prestation newPresta){
         prestationService.addPrestation(newPresta);
         return newPresta;
+    }*/
+
+    //ajout avec dto
+    @PostMapping(value = "/prestation")
+    PrestationDto addPrestation (@RequestBody PrestationDto newPresta){
+        return PrestationDto.fromPrestation(prestationService.addPrestation(newPresta.toPrestation()));
     }
 
     //modif
@@ -32,7 +39,7 @@ public class PrestationController {
         if (existingPresta == null){
             throw new Exception("Cette prestation n'existe pas");
         }
-        Prestation updatedPrestation = prestationService.addPrestation(presta);
+        prestationService.addPrestation(presta);
         return presta;
     }
 
