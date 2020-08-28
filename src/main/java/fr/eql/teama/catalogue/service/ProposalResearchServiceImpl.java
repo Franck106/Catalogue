@@ -36,26 +36,37 @@ public class ProposalResearchServiceImpl implements ProposalResearchService {
             List<Predicate> predicates = new ArrayList<>();
 
             // Filter by category
-            Expression<String> category = root.get("category").get("id");
-            predicates.add(category.in(request.getCategories()));
+            if (request.getCategories() != null) {
+                Expression<String> category = root.get("category").get("id");
+                predicates.add(category.in(request.getCategories()));
+            }
 
             return builder.and(predicates.toArray(new Predicate[0]));
         };
 
         List<Proposal> results = proposalRepository.findAll(specification);
 
+        // If search location is provided, use it as a filter
         if (request.getSearchLocation() != null && !request.getSearchLocation().trim().isEmpty()) {
             results = results.stream().filter(proposal -> {
                 if (proposal.getMaxDistance() == 0) {
                     return true;
                 }
 
+                // Determine distance between search location and provider's location
                 double distance = geolocationService.getDistance(
                         proposal.getProvider().getGeolocation(),
                         request.getSearchLocation());
 
                 return distance < proposal.getMaxDistance();
             }).collect(Collectors.toList());
+        }
+
+        // Sort, most recent first
+        results.sort((o1, o2) -> Math.round(o2.getDate().getTime() - o1.getDate().getTime()));
+
+        if (request.getMaxResults() != null && results.size() > request.getMaxResults()) {
+            results = results.subList(0, request.getMaxResults());
         }
 
         return new ProposalResearchResponse(results.size(), results);

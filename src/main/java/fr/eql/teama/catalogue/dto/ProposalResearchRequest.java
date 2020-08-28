@@ -9,4 +9,5 @@ import java.util.List;
 public class ProposalResearchRequest {
     List<Integer> categories;
     String searchLocation;
+    Integer maxResults;
 }
