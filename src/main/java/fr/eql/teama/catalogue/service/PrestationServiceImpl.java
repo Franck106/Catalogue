@@ -46,7 +46,9 @@ public class PrestationServiceImpl implements PrestationService{
     @Override
     public List<Prestation> findAllPrestationsForUser(Integer id) {
         User customer = userRepository.findById(id).get();
-        return prestationRepository.findAllByCustomer(customer);
+        List<Prestation> result = prestationRepository.findAllByCustomer(customer);
+        result.sort((a, b) -> b.getStartDate().compareTo(a.getStartDate()));
+        return result;
     }
 }
 
