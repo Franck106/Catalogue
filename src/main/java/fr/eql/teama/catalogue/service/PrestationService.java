@@ -9,6 +9,7 @@ import java.util.List;
 @WebService
 public interface PrestationService {
     Prestation addPrestation (Prestation newPresta);
+    PrestationDto addPresta (PrestationDto prestationDto);
     Prestation findById (Integer id);
     List<Prestation> findAllPrestationsForUser(Integer id);
 }

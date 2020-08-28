@@ -24,13 +24,19 @@ public class PrestationController {
     Prestation addPrestation (@RequestBody Prestation newPresta){
         prestationService.addPrestation(newPresta);
         return newPresta;
-    }*/
-
+    }
+*/
     //ajout avec dto
     @PostMapping(value = "/prestation")
     PrestationDto addPrestation (@RequestBody PrestationDto newPresta){
-        return PrestationDto.fromPrestation(prestationService.addPrestation(newPresta.toPrestation()));
+     //   System.out.println("SUSHHZIHODHZOH" + newPresta.getIdCustomer() + newPresta.getIdProposal());
+  //      PrestationDto prestationDto = prestationService.addPresta(newPresta);
+        System.out.println("JE PASSE DANS CONTROLLER" + newPresta.getId());
+       return PrestationDto.fromPrestation(prestationService.addPrestation(newPresta.toPrestation()));
+    //    return prestationDto;
     }
+
+
 
     //modif
     @PutMapping(value = "/prestation")
