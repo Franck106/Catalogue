@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -49,6 +50,10 @@ public class ProposalServiceImpl implements ProposalService{
             category.getProposals().add(proposal);
             categoryRepository.save(category);
         }
+
+        // Set proposal's date as now
+        proposal.setDate(new Date());
+
         return proposalRepository.save(proposal);
     }
 

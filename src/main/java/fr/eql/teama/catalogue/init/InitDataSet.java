@@ -10,7 +10,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 @Profile("initData")
@@ -477,6 +480,12 @@ public class InitDataSet {
 		proposal.setCategory(categoryRepository.findById(categoryId).orElse(null));
 		proposal.setProvider(userRepository.findById(userId).orElse(null));
 		proposal.setMaxDistance(Math.random() * 10 + 5);
+
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.set(2020, Calendar.JANUARY, 1);
+		Date randomDate = new Date(ThreadLocalRandom.current()
+				.nextLong(calendar.getTime().getTime(), new Date().getTime()));
+		proposal.setDate(randomDate);
 
 		proposalRepository.save(proposal);
 	}
