@@ -1,10 +1,11 @@
 package fr.eql.teama.catalogue.controller;
 
-import fr.eql.teama.catalogue.dto.PrestationDto;
 import fr.eql.teama.catalogue.entities.Prestation;
 import fr.eql.teama.catalogue.entities.Proposal;
+import fr.eql.teama.catalogue.entities.User;
 import fr.eql.teama.catalogue.service.PrestationService;
 import fr.eql.teama.catalogue.service.ProposalService;
+import fr.eql.teama.catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,22 +19,20 @@ public class PrestationController {
     @Autowired
     private PrestationService prestationService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ProposalService proposalService;
 
     //ajout
-   /* @PostMapping(value = "/prestation")
-    Prestation addPrestation (@RequestBody Prestation newPresta){
-        prestationService.addPrestation(newPresta);
-        return newPresta;
-    }
-*/
-    //ajout avec dto
     @PostMapping(value = "/prestation")
-    PrestationDto addPrestation (@RequestBody PrestationDto newPresta){
-     //   System.out.println("SUSHHZIHODHZOH" + newPresta.getIdCustomer() + newPresta.getIdProposal());
-  //      PrestationDto prestationDto = prestationService.addPresta(newPresta);
-        System.out.println("JE PASSE DANS CONTROLLER" + newPresta.getId());
-       return PrestationDto.fromPrestation(prestationService.addPrestation(newPresta.toPrestation()));
-    //    return prestationDto;
+    Prestation addPrestation (@RequestBody Prestation newPresta){
+        User customer = userService.findUserById(newPresta.getCustomer().getId());
+        newPresta.setCustomer(customer);
+        Proposal proposal = proposalService.getProposalById(newPresta.getProposal().getId());
+        newPresta.setProposal(proposal);
+        return prestationService.addPrestation(newPresta);
     }
 
 
