@@ -3,12 +3,14 @@ package fr.eql.teama.catalogue.controller;
 import fr.eql.teama.catalogue.dto.DeleteResponse;
 import fr.eql.teama.catalogue.dto.ProposalResearchRequest;
 import fr.eql.teama.catalogue.dto.ProposalResearchResponse;
+import fr.eql.teama.catalogue.entities.User;
 import fr.eql.teama.catalogue.exception.AlreadyExistException;
 import fr.eql.teama.catalogue.entities.Proposal;
 import fr.eql.teama.catalogue.exception.ProposalException;
 import fr.eql.teama.catalogue.exception.UpdateException;
 import fr.eql.teama.catalogue.service.ProposalResearchService;
 import fr.eql.teama.catalogue.service.ProposalService;
+import fr.eql.teama.catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,9 @@ public class ProposalController {
 
     @Autowired
     ProposalService proposalService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     ProposalResearchService proposalResearchService;
@@ -60,8 +65,10 @@ public class ProposalController {
     @PostMapping(value = "/proposals")
     public Proposal addProposal(@RequestBody Proposal proposal) throws AlreadyExistException {
         if (proposalService.checkProposalExistForUser(proposal)) {
-            throw new AlreadyExistException("CE SERVICE EST DÉJA PROPOSÉ PAR L'UTILISATEUR : " + proposal.getProvider().getFirstName());
+            throw new AlreadyExistException("CE SERVICE EST DÉJA PROPOSÉ PAR L'UTILISATEUR id = " + proposal.getProvider().getId());
         } else {
+            User provider = userService.findUserById(proposal.getProvider().getId());
+            proposal.setProvider(provider);
             return proposalService.addProposal(proposal);
         }
     }
