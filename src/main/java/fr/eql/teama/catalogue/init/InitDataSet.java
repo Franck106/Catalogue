@@ -464,9 +464,20 @@ public class InitDataSet {
 		prestation.setCustomerRating(ratingClient);
 		prestation.setProviderRating(ratingProvider);
 
-		// TODO
-		prestation.setStartDate(new Date());
-		prestation.setEndDate(new Date());
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.set(2020, Calendar.JANUARY, 1);
+		Date d1 = new Date(calendar.getTime().getTime());
+		calendar.set(2020, Calendar.APRIL, 1);
+		Date d2 = new Date(calendar.getTime().getTime());
+
+		Date randomDate1 = new Date(ThreadLocalRandom.current()
+				.nextLong(d1.getTime(), d2.getTime()));
+
+		Date randomDate2 = new Date(ThreadLocalRandom.current()
+				.nextLong(d1.getTime(), new Date().getTime()));
+
+		prestation.setStartDate(randomDate1);
+		prestation.setEndDate(randomDate2);
 
 		prestationRepository.save(prestation);
 	}
