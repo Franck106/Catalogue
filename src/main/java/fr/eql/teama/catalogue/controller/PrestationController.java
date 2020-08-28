@@ -48,6 +48,18 @@ public class PrestationController {
         return presta;
     }
 
+    //add feedback to prestation
+    @PutMapping(value = "/prestation/feedback")
+    public Prestation addFeedback(@RequestBody Prestation prestation) throws Exception {
+        Prestation newPrestation = prestationService.findById(prestation.getId());
+        if(newPrestation != null) {
+            newPrestation.setCustomerRating(prestation.getCustomerRating());
+            return prestationService.addPrestation(newPrestation);
+        } else {
+            throw new Exception("Cette prestation n'existe pas");
+        }
+    }
+
     //Get all Prestations for connected user
     @GetMapping(value = "/prestations/user/{id}")
     public List<Prestation> getPrestationsForUser(@PathVariable("id") Integer id) {
