@@ -1,6 +1,5 @@
 package fr.eql.teama.catalogue.service;
 
-import fr.eql.teama.catalogue.dto.PrestationDto;
 import fr.eql.teama.catalogue.entities.Prestation;
 
 import javax.jws.WebService;

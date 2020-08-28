@@ -31,10 +31,10 @@ public class Prestation {
 
     private Boolean valide;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User customer;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Proposal proposal;
 
 }

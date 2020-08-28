@@ -25,12 +25,13 @@ public class PrestationServiceImpl implements PrestationService{
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
     public Prestation addPrestation(Prestation newPresta) {
         if (newPresta.getProposal() != null){
             Proposal getCurrentProp = proposalRepository.findById(newPresta.getProposal().getId()).get();
             getCurrentProp.getPrestations().add(newPresta);
-            proposalRepository.save(getCurrentProp);
+           proposalRepository.save(getCurrentProp);
         }
         return prestationRepository.save(newPresta);
     }
