@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class PrestationServiceImpl implements PrestationService{
+public class PrestationServiceImpl implements PrestationService {
 
     @Autowired
     private PrestationRepository prestationRepository;
@@ -28,10 +28,10 @@ public class PrestationServiceImpl implements PrestationService{
 
     @Override
     public Prestation addPrestation(Prestation newPresta) {
-        if (newPresta.getProposal() != null){
+        if (newPresta.getProposal() != null) {
             Proposal getCurrentProp = proposalRepository.findById(newPresta.getProposal().getId()).get();
             getCurrentProp.getPrestations().add(newPresta);
-           proposalRepository.save(getCurrentProp);
+            proposalRepository.save(getCurrentProp);
         }
 
         return prestationRepository.save(newPresta);

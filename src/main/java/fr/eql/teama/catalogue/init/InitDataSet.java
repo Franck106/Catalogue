@@ -504,12 +504,12 @@ public class InitDataSet {
 		proposalRepository.save(proposal);
 	}
 
-	private void insertUser(String firstName, String lastName, int globalRating, String image, String email, String address, String postalCode,
+	private void insertUser(String firstName, String lastName, float globalRating, String image, String email, String address, String postalCode,
 							  String city, String phone, int premium, String registrationNumber, String geoloc, String gender) {
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		user.setGlobalRating(globalRating);
+		user.setGlobalRating((float)Math.random() * 2.5f + 2.5f);
 		user.setImage(image);
 		user.setEmail(email);
 		user.setAddress(address);

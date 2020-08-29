@@ -8,6 +8,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 import fr.eql.teama.catalogue.dao.CredentialsRepository;
 import fr.eql.teama.catalogue.dao.UserRepository;
+import fr.eql.teama.catalogue.entities.Prestation;
 import fr.eql.teama.catalogue.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private GeolocationService geolocationService;
 
+    @Autowired
+    private PrestationService prestationService;
+
     @Override
     public User addUser(User newUser) {
         geolocationService.addGeolocationToUser(newUser);
         newUser.setImage("img/default.png");
-        newUser.setGlobalRating(0);
+        newUser.setGlobalRating(0.0f);
         credentialsRepository.save(newUser.getCredentials());
         return (User) userRepository.save(newUser);
     }
@@ -75,4 +79,27 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByPostCode(postCode);
     }
 
+    @Override
+    public void updateRatings(User provider) {
+        List<Prestation> prestations = prestationService.findAllPrestationsForProvider(provider.getId());
+
+        if (prestations.size() == 0) {
+            return;
+        }
+
+        float avg = 0;
+
+        for (Prestation presta : prestations) {
+            if (presta.getDelivered()) {
+                float ratings = presta.getCustomerRating();
+
+                avg += ratings;
+            }
+        }
+
+        avg /= prestations.size();
+        provider.setGlobalRating(avg);
+
+        updateUser(provider);
+    }
 }

@@ -20,7 +20,7 @@ public class FullUserDto {
     private Boolean premium;
     private Boolean admin;
     private String registrationNumber = "";
-    private Integer globalRating;
+    private Float globalRating;
     private String image = "";
     private String geolocation = "";
 
