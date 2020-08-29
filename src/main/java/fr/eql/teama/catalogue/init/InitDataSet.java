@@ -459,7 +459,7 @@ public class InitDataSet {
 		prestation.setValide(valide);
 		prestation.setProposal(proposalRepository.findById(proposalId).orElse(null));
 		prestation.setCustomer(userRepository.findById(customerId).orElse(null));
-		prestation.setCancelled(cancelled == 1);
+		prestation.setCancelled(cancelled == 1 && finished != 1);
 		prestation.setDelivered(finished == 1);
 		prestation.setCustomerRating(ratingClient);
 		prestation.setProviderRating(ratingProvider);
@@ -477,7 +477,10 @@ public class InitDataSet {
 				.nextLong(d1.getTime(), new Date().getTime()));
 
 		prestation.setStartDate(randomDate1);
-		prestation.setEndDate(randomDate2);
+
+		if (finished == 1) {
+			prestation.setEndDate(randomDate2);
+		}
 
 		prestationRepository.save(prestation);
 	}
