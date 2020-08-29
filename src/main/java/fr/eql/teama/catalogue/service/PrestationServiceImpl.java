@@ -50,5 +50,13 @@ public class PrestationServiceImpl implements PrestationService{
         result.sort((a, b) -> b.getStartDate().compareTo(a.getStartDate()));
         return result;
     }
+
+    @Override
+    public List<Prestation> findAllPrestationsForProvider(Integer id) {
+        List<Prestation> result = prestationRepository.findAllByProposalProviderId(id);
+        result.sort((a, b) -> b.getStartDate().compareTo(a.getStartDate()));
+
+        return result;
+    }
 }
 

@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface PrestationRepository extends CrudRepository<Prestation, Integer> {
     List<Prestation> findAllByCustomer(User customer);
+    List<Prestation> findAllByProposalProviderId(Integer id);
 }

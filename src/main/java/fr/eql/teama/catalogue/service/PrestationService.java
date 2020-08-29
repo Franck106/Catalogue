@@ -10,4 +10,5 @@ public interface PrestationService {
     Prestation addPrestation (Prestation newPresta);
     Prestation findById (Integer id);
     List<Prestation> findAllPrestationsForUser(Integer id);
+    List<Prestation> findAllPrestationsForProvider(Integer id);
 }
