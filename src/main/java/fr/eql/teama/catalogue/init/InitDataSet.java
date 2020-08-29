@@ -284,7 +284,7 @@ public class InitDataSet {
 		
 		//Insert credentials
 		Credentials credentials1 = insertCredentials("login1", "pwd1");
-		Credentials credentials2 = insertCredentials("login2", "pwd2");
+		Credentials credentials2 = insertCredentials("matt", "matt");
 
 		//Link user to credentials
 		addCredentialsToUser(1, credentials1.getId());
