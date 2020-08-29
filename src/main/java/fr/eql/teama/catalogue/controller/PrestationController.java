@@ -70,4 +70,9 @@ public class PrestationController {
         return prestationService.findAllPrestationsForUser(id);
     }
 
+    //Get all Prestations for connected user
+    @GetMapping(value = "/demands/user/{id}")
+    public List<Prestation> getDemandsForUser(@PathVariable("id") Integer id) {
+        return prestationService.findAllPrestationsForProvider(id);
+    }
 }
