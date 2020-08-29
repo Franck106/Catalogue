@@ -509,7 +509,7 @@ public class InitDataSet {
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		user.setGlobalRating(globalRating);
+		user.setGlobalRating((float)Math.random() * 2.5f + 2.5f);
 		user.setImage(image);
 		user.setEmail(email);
 		user.setAddress(address);
