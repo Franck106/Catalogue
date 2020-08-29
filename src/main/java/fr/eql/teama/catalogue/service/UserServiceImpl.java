@@ -32,6 +32,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User newUser) {
         geolocationService.addGeolocationToUser(newUser);
+        newUser.setImage("img/default.png");
+        newUser.setGlobalRating(0);
         credentialsRepository.save(newUser.getCredentials());
         return (User) userRepository.save(newUser);
     }
