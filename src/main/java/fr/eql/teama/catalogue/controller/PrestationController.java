@@ -58,6 +58,9 @@ public class PrestationController {
             newPrestation.setCustomerRating(prestation.get("customerRating"));
             newPrestation.setEndDate(new Date());
             newPrestation.setDelivered(true);
+
+            userService.updateRatings(newPrestation.getProposal().getProvider());
+
             return prestationService.addPrestation(newPrestation);
         } else {
             throw new Exception("Cette prestation n'existe pas");

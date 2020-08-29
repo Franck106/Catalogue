@@ -39,7 +39,7 @@ public class User {
 
     private String registrationNumber;
 
-    private Integer globalRating;
+    private Float globalRating;
 
     private String image;
 

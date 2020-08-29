@@ -504,7 +504,7 @@ public class InitDataSet {
 		proposalRepository.save(proposal);
 	}
 
-	private void insertUser(String firstName, String lastName, int globalRating, String image, String email, String address, String postalCode,
+	private void insertUser(String firstName, String lastName, float globalRating, String image, String email, String address, String postalCode,
 							  String city, String phone, int premium, String registrationNumber, String geoloc, String gender) {
 		User user = new User();
 		user.setFirstName(firstName);

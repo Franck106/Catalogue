@@ -16,8 +16,5 @@ public interface UserService {
     List<User> getAllUsers();
     List<User> findByCity(String city);
     List<User> findByPostCode(String postCode);
-
-
-
-
+    void updateRatings(User provider);
 }
