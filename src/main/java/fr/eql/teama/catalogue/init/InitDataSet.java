@@ -493,7 +493,7 @@ public class InitDataSet {
 		proposal.setPrice((double)price);
 		proposal.setCategory(categoryRepository.findById(categoryId).orElse(null));
 		proposal.setProvider(userRepository.findById(userId).orElse(null));
-		proposal.setMaxDistance(Math.random() * 10 + 5);
+		proposal.setMaxDistance(Math.random() * 5 + 20);
 
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.set(2020, Calendar.JANUARY, 1);

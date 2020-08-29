@@ -34,6 +34,7 @@ public class PrestationController {
         User customer = userService.findUserById(newPresta.getCustomer().getId());
         newPresta.setCustomer(customer);
         newPresta.setStartDate(new Date());
+        newPresta.setValide(true);
         Proposal proposal = proposalService.getProposalById(newPresta.getProposal().getId());
         newPresta.setProposal(proposal);
         return prestationService.addPrestation(newPresta);
