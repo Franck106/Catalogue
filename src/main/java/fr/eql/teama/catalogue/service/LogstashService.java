@@ -1,4 +1,4 @@
-package fr.eql.teama.catalogue.controller;
+package fr.eql.teama.catalogue.service;
 
 import fr.eql.teama.catalogue.dto.LogProposalDto;
 import fr.eql.teama.catalogue.entities.Proposal;
@@ -7,7 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
-public class LogstashController {
+public class LogstashService {
 
     LogProposalDto logProposalDto = new LogProposalDto();
 
