@@ -5,6 +5,7 @@ import fr.eql.teama.catalogue.entities.*;
 import fr.eql.teama.catalogue.service.CredentialsService;
 import fr.eql.teama.catalogue.service.LogstashService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -43,7 +44,8 @@ public class InitDataSet {
 	@Autowired
 	private LogstashService logstashService;
 
-	private boolean useLogstash = true;
+	@Value("${logstash.initData:false}")
+	private boolean useLogstash;
 
 	@PostConstruct()
 	public void initData() throws NoSuchAlgorithmException {
