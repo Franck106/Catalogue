@@ -8,6 +8,7 @@ import fr.eql.teama.catalogue.exception.AlreadyExistException;
 import fr.eql.teama.catalogue.entities.Proposal;
 import fr.eql.teama.catalogue.exception.ProposalException;
 import fr.eql.teama.catalogue.exception.UpdateException;
+import fr.eql.teama.catalogue.service.LogstashService;
 import fr.eql.teama.catalogue.service.ProposalResearchService;
 import fr.eql.teama.catalogue.service.ProposalService;
 import fr.eql.teama.catalogue.service.UserService;
@@ -31,7 +32,7 @@ public class ProposalController {
     @Autowired
     ProposalResearchService proposalResearchService;
 
-    LogstashController logstashController = new LogstashController();
+    LogstashService logstashService = new LogstashService();
 
     @GetMapping(value = "/proposals")
     public List<Proposal> getProposals(@RequestParam(value = "name", required = false) String name)
@@ -71,7 +72,7 @@ public class ProposalController {
             User provider = userService.findUserById(proposal.getProvider().getId());
             proposal.setProvider(provider);
             Proposal newProposal = proposalService.addProposal(proposal);
-            logstashController.postProposal(newProposal);
+            logstashService.postProposal(newProposal);
             return newProposal;
         }
     }
