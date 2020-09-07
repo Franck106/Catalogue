@@ -32,7 +32,8 @@ public class ProposalController {
     @Autowired
     ProposalResearchService proposalResearchService;
 
-    LogstashService logstashService = new LogstashService();
+    @Autowired
+    LogstashService logstashService;
 
     @GetMapping(value = "/proposals")
     public List<Proposal> getProposals(@RequestParam(value = "name", required = false) String name)
