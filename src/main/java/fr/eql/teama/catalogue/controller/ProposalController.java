@@ -12,9 +12,9 @@ import fr.eql.teama.catalogue.service.ProposalResearchService;
 import fr.eql.teama.catalogue.service.ProposalService;
 import fr.eql.teama.catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -31,6 +31,8 @@ public class ProposalController {
 
     @Autowired
     ProposalResearchService proposalResearchService;
+
+    LogstashController logstashController = new LogstashController();
 
     @GetMapping(value = "/proposals")
     public List<Proposal> getProposals(@RequestParam(value = "name", required = false) String name)
@@ -69,7 +71,9 @@ public class ProposalController {
         } else {
             User provider = userService.findUserById(proposal.getProvider().getId());
             proposal.setProvider(provider);
-            return proposalService.addProposal(proposal);
+            Proposal newProposal = proposalService.addProposal(proposal);
+            logstashController.postProposal(newProposal);
+            return newProposal;
         }
     }
 
