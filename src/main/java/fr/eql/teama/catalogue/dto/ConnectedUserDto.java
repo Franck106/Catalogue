@@ -1,8 +1,6 @@
 package fr.eql.teama.catalogue.dto;
 
-import fr.eql.teama.catalogue.entities.Credentials;
 import fr.eql.teama.catalogue.entities.User;
-import fr.eql.teama.catalogue.entities.UserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,9 +36,12 @@ public class ConnectedUserDto {
         dto.setAdmin(user.getAdmin());
         dto.setRegistrationNumber(user.getRegistrationNumber());
         dto.setGlobalRating(user.getGlobalRating());
-        dto.setLogin(user.getCredentials().getLogin());
         dto.setRole(user.getRole().toString());
         dto.setGeolocation(user.getGeolocation());
+
+        if (user.getCredentials() != null) {
+            dto.setLogin(user.getCredentials().getLogin());
+        }
 
         return dto;
     }

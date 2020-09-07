@@ -3,6 +3,7 @@ package fr.eql.teama.catalogue.init;
 import fr.eql.teama.catalogue.dao.*;
 import fr.eql.teama.catalogue.entities.*;
 import fr.eql.teama.catalogue.service.CredentialsService;
+import fr.eql.teama.catalogue.service.LogstashService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,11 @@ public class InitDataSet {
 
 	@Autowired
 	private CredentialsService credentialsService;
+
+	@Autowired
+	private LogstashService logstashService;
+
+	private boolean useLogstash = true;
 
 	@PostConstruct()
 	public void initData() throws NoSuchAlgorithmException {
@@ -500,6 +506,10 @@ public class InitDataSet {
 		Date randomDate = new Date(ThreadLocalRandom.current()
 				.nextLong(calendar.getTime().getTime(), new Date().getTime()));
 		proposal.setDate(randomDate);
+
+		if (useLogstash) {
+			logstashService.postProposal(proposal);
+		}
 
 		proposalRepository.save(proposal);
 	}

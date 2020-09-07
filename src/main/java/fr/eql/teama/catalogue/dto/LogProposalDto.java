@@ -21,11 +21,6 @@ public class LogProposalDto {
     private Double maxDistance;
     private Date date;
 
-    private static ConnectedUserDto providerToDto(User provider) {
-        ConnectedUserDto connectedUserDto = new ConnectedUserDto();
-        return connectedUserDto.from(provider);
-    }
-
     public static LogProposalDto from(Proposal proposal) {
         LogProposalDto dto = new LogProposalDto();
         dto.setId(proposal.getId());
@@ -33,7 +28,7 @@ public class LogProposalDto {
         dto.setDescription(proposal.getDescription());
         dto.setPrice(proposal.getPrice());
         dto.setCategory(proposal.getCategory());
-        dto.setProvider(providerToDto(proposal.getProvider()));
+        dto.setProvider(ConnectedUserDto.from(proposal.getProvider()));
         dto.setMaxDistance(proposal.getMaxDistance());
         dto.setDate(proposal.getDate());
         return dto;
