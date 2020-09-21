@@ -28,6 +28,11 @@ public class PrestationController {
     @Autowired
     private ProposalService proposalService;
 
+    @GetMapping(value = "/prestation/{id}")
+    Prestation getPrestationById (@PathVariable("id") Integer id) {
+        return prestationService.findById(id);
+    }
+
     //ajout
     @PostMapping(value = "/prestation")
     Prestation addPrestation (@RequestBody Prestation newPresta) {
