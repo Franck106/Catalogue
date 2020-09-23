@@ -73,7 +73,7 @@ public class ProposalController {
             User provider = userService.findUserById(proposal.getProvider().getId());
             proposal.setProvider(provider);
             Proposal newProposal = proposalService.addProposal(proposal);
-            logstashService.postProposal(newProposal);
+            //logstashService.postProposal(newProposal);
             return newProposal;
         }
     }
