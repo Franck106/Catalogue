@@ -17,8 +17,10 @@ public class Category {
     @Id
     private Integer id;
 
+    @Column(name = "category_name")
     private String name;
 
+    @Column(name = "category_description")
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
@@ -32,6 +34,7 @@ public class Category {
     @ManyToOne
     private Category category;
 
+    @Column(name = "category_image")
     private String image;
 
 }
