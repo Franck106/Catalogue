@@ -41,6 +41,7 @@ public class User {
 
     private Float globalRating;
 
+    @Column(name = "user_image")
     private String image;
 
     @OneToOne
