@@ -55,17 +55,17 @@ public class InitDataSet {
 		// Insert categories
 		Category soins = insertCategory(1, "Soin & Bien-être", "bien_etre.png");
 		insertCategory(2, "Massage", soins);
-		insertCategory(3, "Manucure", soins);
+		// insertCategory(3, "Manucure", soins);
 		insertCategory(4, "Soins esthétiques", soins);
 		insertCategory(5, "Coiffure", soins);
 
 		Category aide = insertCategory(10, "Aide à la personne", "garde_enfant.png");
-		insertCategory(11, "Aide scolaire", aide);
+		// insertCategory(11, "Aide scolaire", aide);
 		insertCategory(12, "Garde d'enfants", aide);
 		insertCategory(13, "Assistance aux personnes âgées", aide);
 		insertCategory(14, "Assistance informatique", aide);
 		insertCategory(15, "Aide au déménagement", aide);
-		insertCategory(16, "Garde d'animaux", aide);
+		// insertCategory(16, "Garde d'animaux", aide);
 
 		Category arts = insertCategory(20, "Arts et création", "arts.png");
 		insertCategory(21, "Photographie et vidéo", arts);
@@ -73,21 +73,21 @@ public class InitDataSet {
 		insertCategory(23, "Illustration et infographie", arts);
 		insertCategory(24, "Arts plastiques", arts);
 		insertCategory(25, "Arts numériques et multimédia", arts);
-		insertCategory(26, "Loisirs créatifs", arts);
+		// insertCategory(26, "Loisirs créatifs", arts);
 
 		Category maison = insertCategory(30, "Maison et jardin", "jardinage.png");
 		insertCategory(31, "Jardinage", maison);
-		insertCategory(32, "Repassage", maison);
+		// insertCategory(32, "Repassage", maison);
 		insertCategory(33, "Ménage", maison);
 		insertCategory(34, "Lavage automobile", maison);
 		insertCategory(35, "Bricolage, petit travaux", maison);
 		insertCategory(36, "Plomberie", maison);
 		insertCategory(37, "Electricité", maison);
-		insertCategory(38, "Sols et terrassement", maison);
+		// insertCategory(38, "Sols et terrassement", maison);
 
 		Category info = insertCategory(50, "Informatique", "informatique.png");
 		insertCategory(51, "Réseaux sociaux", info);
-		insertCategory(52, "Installation d'un ordinateur", info);
+		// insertCategory(52, "Installation d'un ordinateur", info);
 		insertCategory(53, "Programmation", info);
 		insertCategory(54, "Dépannage informatique", info);
 
@@ -113,7 +113,7 @@ public class InitDataSet {
 		insertUser("Alvina", "Delavega", 4, "women/29.jpg", "alvina.delavega@mail.com", "8 Rue du Jardin Modèle", "92600", "Asnières-sur-Seine", "0602149846", 1, "", "{\"lat\":48.914147, \"lng\":2.306312}", "f");
 		insertUser("Éléonore", "Payet", 4, "women/39.jpg", "éléonore.payet@mail.com", "22 Rue Dupré", "92600", "Asnières-sur-Seine", "0602149847", 1, "67897834564128", "{\"lat\":48.912987, \"lng\":2.278536}", "f");
 		insertUser("Corinne", "Marques", 4, "women/74.jpg", "corinne.marques@mail.com", "13 Rue de la Courneuve", "93300", "Aubervilliers", "0602149848", 0, "", "{\"lat\":48.915780, \"lng\":2.384082}", "f");
-		insertUser("Marie", "Satchell", 4, "women/51.jpg", "marie.satchell@mail.com", "48 Rue Francisco Ferrer", "93170", "Bagnolet", "0602149849", 0, "", "{\"lat\":48.872485, \"lng\":2.421098}", "m");
+		insertUser("Marie", "Satchell", 4, "women/51.jpg", "marie.satchell@mail.com", "48 Rue Francisco Ferrer", "93170", "Bagnolet", "0602149849", 0, "", "{\"lat\":48.872485, \"lng\":2.421098}", "f");
 		insertUser("Eric", "Chatenais", 4, "men/84.jpg", "eric.chatenais@mail.com", "1 Allée Jacques Daguerre", "94300", "Vincennes", "0602149850", 1, "", "{\"lat\":48.843320, \"lng\":2.430348}", "m");
 		insertUser("Beatrice", "Malette", 4, "women/41.jpg", "beatrice.malette@mail.com", "7 Avenue Gambetta", "94700", "Maisons-Alfort", "0602149851", 1, "", "{\"lat\":48.810361, \"lng\":2.435153}", "f");
 		insertUser("Ralph", "Montjoie", 4, "men/50.jpg", "ralph.montjoie@mail.com", "29 Rue de Champagne", "94700", "Maisons-Alfort", "0602149852", 0, "", "{\"lat\":48.812968, \"lng\":2.435080}", "m");
@@ -145,8 +145,8 @@ public class InitDataSet {
 		insertUser("Seymour", "Doucet", 3, "men/76.jpg", "seymour.doucet@mail.com", "25 Villa des Bruyères", "94800", "Villejuif", "0603010051", 0, "", "{\"lat\":48.788503, \"lng\":2.351948}", "m");
 		insertUser("Louise", "Galarneau", 3, "women/58.jpg", "louise.galarneau@mail.com", "10 Rue Ledru Rollin", "94200", "Ivry-sur-Seine", "0603010052", 1, "", "{\"lat\":48.815602, \"lng\":2.382627}", "f");
 		insertUser("Louis", "Franchet", 3, "men/69.jpg", "louis.franchet@mail.com", "1 Passage Montgallet", "75012", "Paris", "0603010053", 1, "", "{\"lat\":48.843746, \"lng\":2.387972}", "m");
-		insertUser("Roslyn", "Chassé", 3, null, "roslyn.chassé@mail.com", "46 Rue de Lagny", "75020", "Paris", "0603010054", 0, "", "{\"lat\":48.848726, \"lng\":2.403819}", "");
-		insertUser("Prunella", "Majory", 3, null, "prunella.majory@mail.com", "17 Rue Henri Poincaré", "75020", "Paris", "0603010055", 0, "", "{\"lat\":48.870448, \"lng\":2.401232}", "");
+		insertUser("Roslyn", "Chassé", 3, null, "roslyn.chassé@mail.com", "46 Rue de Lagny", "75020", "Paris", "0603010054", 0, "", "{\"lat\":48.848726, \"lng\":2.403819}", "f");
+		insertUser("Prunella", "Majory", 3, null, "prunella.majory@mail.com", "17 Rue Henri Poincaré", "75020", "Paris", "0603010055", 0, "", "{\"lat\":48.870448, \"lng\":2.401232}", "f");
 		insertUser("Melville", "Aubé", 3, "men/74.jpg", "melville.aubé@mail.com", "16 Rue Custine", "75018", "Paris", "0603010056", 1, "", "{\"lat\":48.888313, \"lng\":2.348191}", "m");
 		insertUser("Capucine", "Marcheterre", 3, "women/17.jpg", "capucine.marcheterre@mail.com", "30 Rue des Graviers", "93400", "Saint-Ouen", "0604152322", 1, "67897834564128", "{\"lat\":48.902844, \"lng\":2.350338}", "f");
 		insertUser("Marthe", "Marois", 3, "women/79.jpg", "marthe.marois@mail.com", "178 Avenue du Président Wilson", "93210", "Saint-Denis", "0604152323", 0, "", "{\"lat\":48.911954, \"lng\":2.358324}", "f");
@@ -160,7 +160,7 @@ public class InitDataSet {
 		insertUser("Ivana", "Hults", 3, "women/81.jpg", "ivana.hults@mail.com", "4 rue Gilbert Bonnemaison", "93800", "Epinay-sur-seine", "0604152331", 0, "", "{\"lat\":48.955119, \"lng\":2.311284}", "f");
 		insertUser("Oleta", "Funderburke", 3, "women/32.jpg", "oleta.funderburke@mail.com", "10 rue de la Chevrette", "93800", "Epinay-sur-seine", "0604152332", 1, "16845782165795", "{\"lat\":48.955467, \"lng\":2.317435}", "f");
 		insertUser("Suzette", "Ailleboust", 3, "women/51.jpg", "suzette.ailleboust@mail.com", "3 avenue Léon Blum", "93800", "Epinay-sur-seine", "0604152333", 0, "", "{\"lat\":48.958916, \"lng\":2.313000}", "f");
-		insertUser("Honoré", "Vaillancour", 3, "women/99.jpg", "h.vaillancour@mail.com", "Allée des Glycines", "92000", "Nanterre", "0604152334", 0, "", "{\"lat\":48.909791, \"lng\":2.223508}", "m");
+		insertUser("Honorée", "Vaillancour", 3, "women/99.jpg", "h.vaillancour@mail.com", "Allée des Glycines", "92000", "Nanterre", "0604152334", 0, "", "{\"lat\":48.909791, \"lng\":2.223508}", "f");
 		insertUser("Eliot", "Pitre", 3, "men/98.jpg", "eliot.pitre@mail.com", "1 Rue Raymond Poincaré", "92420", "Vaucresson", "0604152335", 1, "", "{\"lat\":48.842295, \"lng\":2.167407}", "m");
 		insertUser("Adèle", "Coulombe", 3, "women/57.jpg", "adèle.coulombe@mail.com", "14 Avenue Chauchard", "78000", "Versailles", "0603010071", 1, "96357885621157", "{\"lat\":48.799903, \"lng\":2.157084}", "f");
 		insertUser("Susie", "Menton", 3, "women/48.jpg", "susie.menton@mail.com", "1 Allée des Érables", "78114", "Magny-les-Hameaux", "0603010072", 1, "", "{\"lat\":48.715824, \"lng\":2.100713}", "f");
@@ -170,7 +170,7 @@ public class InitDataSet {
 		insertUser("Dreux", "Brasseur", 3, "men/21.jpg", "dreux.brasseur@mail.com", "15 Rue Fernand Enguehard", "92220", "Bagneux", "0603010076", 1, "", "{\"lat\":48.796071, \"lng\":2.309165}", "m");
 		insertUser("Philippine", "Demers", 3, "women/84.jpg", "philippine.demers@mail.com", "155 bis Avenue Pierre Brossolette", "92120", "Montrouge", "0603010077", 1, "", "{\"lat\":48.815621, \"lng\":2.305130}", "f");
 		insertUser("Eloise", "Desilets", 3, "women/59.jpg", "eloise.desilets@mail.com", "2 rue Florian", "93500", "Pantin", "0603010078", 0, "", "{\"lat\":48.894495, \"lng\":2.401730}", "f");
-		insertUser("Antoine", "Plouffe", 3, "women/57.jpg", "aubrey.plouffe@mail.com", "41 rue Hoche", "93500", "Pantin", "0603010079", 1, "", "{\"lat\":48.893970, \"lng\":2.401718}", "f");
+		insertUser("Adrien", "Plouffe", 3, "women/57.jpg", "adrien.plouffe@mail.com", "41 rue Hoche", "93500", "Pantin", "0603010079", 1, "", "{\"lat\":48.893970, \"lng\":2.401718}", "m");
 		insertUser("Manon", "Généreux", 3, "women/51.jpg", "manon.généreux@mail.com", "7 rue Béranger", "93310", "Le-Pré-Saint-Gervais", "0603010080", 0, "", "{\"lat\":48.888293, \"lng\":2.400281}", "f");
 		insertUser("Ansel", "Rouze", 3, "men/21.jpg", "ansel.rouze@mail.com", "11 rue Franklin", "93310", "Le-Pré-Saint-Gervais", "0603010081", 0, "", "{\"lat\":48.888502, \"lng\":2.402715}", "m");
 		insertUser("Marshall", "Martineau", 3, "men/93.jpg", "marshall.martineau@mail.com", "1 Square Alphonse Daudet", "92350", "Le Plessis-Robinson", "0603010082", 1, "", "{\"lat\":48.781612, \"lng\":2.257646}", "m");
@@ -199,28 +199,28 @@ public class InitDataSet {
 		insertUser("Audrey", "Austin", 3, "women/04.jpg", "audrey.austin@mail.com", "38 rue Sadi Carnot", "32000", "Auch", "0605008988", 0, "", "{\"lat\":47.23402109, \"lng\":2.329713713}", "f");
 		insertUser("Felicien", "Gougeon", 3, "men/71.jpg", "felicien.gougeon@mail.com", "5 Rue de Verdun", "93370", "Montfermeil", "0605008989", 1, "", "{\"lat\":46.20942384, \"lng\":2.819988826}", "m");
 		insertUser("Baptiste", "Renaud", 3, "men/62.jpg", "baptiste.renaud@mail.com", "43 rue Adolphe Wurtz", "43000", "Le Puy-en-velay", "0605008990", 0, "66597135448625", "{\"lat\":45.6393554, \"lng\":1.246094247}", "m");
-		insertUser("Agnès", "Lespérance", 3, null, "agnès.lespérance@mail.com", "34 cours Franklin Roosevelt", "13010", "Marseille", "0605008991", 0, "", "{\"lat\":46.00983649, \"lng\":2.61433636}", "");
-		insertUser("Antoinette", "Patenaude", 3, null, "antoinette.patenaude@mail.com", "94 rue du Clair Bocage", "33260", "La Teste-de-buch", "0605008992", 1, "", "{\"lat\":46.28129434, \"lng\":3.886274999}", "");
-		insertUser("Flordelis", "Trudeau", 3, null, "flordelis.trudeau@mail.com", "22 Rue du Limas", "64100", "Bayonne", "0605008993", 1, "", "{\"lat\":48.33198385, \"lng\":2.541600715}", "");
-		insertUser("Liane", "Benjamin", 4, null, "liane.benjamin@mail.com", "29 avenue Jules Ferry", "64100", "Bayonne", "0605008994", 0, "", "{\"lat\":45.42267084, \"lng\":2.076091633}", "");
-		insertUser("Agnès", "Artois", 4, null, "agnès.artois@mail.com", "2 Rue Roussy", "93130", "Noisy-le-sec", "0605008995", 0, "", "{\"lat\":45.92880127, \"lng\":0.2068451259}", "");
-		insertUser("Avice", "Morin", 4, null, "avice.morin@mail.com", "59 rue Lenotre", "35700", "Rennes", "0605008996", 0, "", "{\"lat\":46.73645507, \"lng\":1.348449842}", "");
-		insertUser("Ray", "Grimard", 4, null, "ray.grimard@mail.com", "60 rue Lenotre", "35700", "Rennes", "0605008997", 1, "", "{\"lat\":47.78637977, \"lng\":2.666933276}", "");
-		insertUser("Burnell", "Mireault", 4, null, "burnell.mireault@mail.com", "88 rue Sadi Carnot", "89000", "Auxerre", "0605008998", 1, "", "{\"lat\":45.97459357, \"lng\":3.140456641}", "");
-		insertUser("Serge", "Lamour", 4, null, "serge.lamour@mail.com", "89 rue Sadi Carnot", "89000", "Auxerre", "0605008999", 0, "", "{\"lat\":45.16652263, \"lng\":3.251056292}", "");
-		insertUser("Amorette", "Bourassa", 4, null, "amorette.bourassa@mail.com", "90 rue Sadi Carnot", "89000", "Auxerre", "0605009000", 0, "", "{\"lat\":45.37059752, \"lng\":2.623396326}", "");
-		insertUser("Langley", "Baril", 4, null, "langley.baril@mail.com", "60 rue de Lille", "91200", "Athis-mons", "0605009001", 1, "", "{\"lat\":48.43181874, \"lng\":2.993406201}", "");
-		insertUser("Lowell", "Busque", 4, null, "lowell.busque@mail.com", "61 rue de Lille", "91200", "Athis-mons", "0605009002", 0, "96995882127465", "{\"lat\":47.79368848, \"lng\":0.2732390452}", "");
+		insertUser("Agnès", "Lespérance", 3, null, "agnès.lespérance@mail.com", "34 cours Franklin Roosevelt", "13010", "Marseille", "0605008991", 0, "", "{\"lat\":46.00983649, \"lng\":2.61433636}", "f");
+		insertUser("Antoinette", "Patenaude", 3, null, "antoinette.patenaude@mail.com", "94 rue du Clair Bocage", "33260", "La Teste-de-buch", "0605008992", 1, "", "{\"lat\":46.28129434, \"lng\":3.886274999}", "f");
+		insertUser("Flordelis", "Trudeau", 3, null, "flordelis.trudeau@mail.com", "22 Rue du Limas", "64100", "Bayonne", "0605008993", 1, "", "{\"lat\":48.33198385, \"lng\":2.541600715}", "f");
+		insertUser("Liane", "Benjamin", 4, null, "liane.benjamin@mail.com", "29 avenue Jules Ferry", "64100", "Bayonne", "0605008994", 0, "", "{\"lat\":45.42267084, \"lng\":2.076091633}", "f");
+		insertUser("Agnès", "Artois", 4, null, "agnès.artois@mail.com", "2 Rue Roussy", "93130", "Noisy-le-sec", "0605008995", 0, "", "{\"lat\":45.92880127, \"lng\":0.2068451259}", "f");
+		insertUser("Avice", "Morin", 4, null, "avice.morin@mail.com", "59 rue Lenotre", "35700", "Rennes", "0605008996", 0, "", "{\"lat\":46.73645507, \"lng\":1.348449842}", "f");
+		insertUser("Ray", "Grimard", 4, null, "ray.grimard@mail.com", "60 rue Lenotre", "35700", "Rennes", "0605008997", 1, "", "{\"lat\":47.78637977, \"lng\":2.666933276}", "m");
+		insertUser("Burnell", "Mireault", 4, null, "burnell.mireault@mail.com", "88 rue Sadi Carnot", "89000", "Auxerre", "0605008998", 1, "", "{\"lat\":45.97459357, \"lng\":3.140456641}", "m");
+		insertUser("Serge", "Lamour", 4, null, "serge.lamour@mail.com", "89 rue Sadi Carnot", "89000", "Auxerre", "0605008999", 0, "", "{\"lat\":45.16652263, \"lng\":3.251056292}", "m");
+		insertUser("Amorette", "Bourassa", 4, null, "amorette.bourassa@mail.com", "90 rue Sadi Carnot", "89000", "Auxerre", "0605009000", 0, "", "{\"lat\":45.37059752, \"lng\":2.623396326}", "f");
+		insertUser("Langley", "Baril", 4, null, "langley.baril@mail.com", "60 rue de Lille", "91200", "Athis-mons", "0605009001", 1, "", "{\"lat\":48.43181874, \"lng\":2.993406201}", "m");
+		insertUser("Lowell", "Busque", 4, null, "lowell.busque@mail.com", "61 rue de Lille", "91200", "Athis-mons", "0605009002", 0, "96995882127465", "{\"lat\":47.79368848, \"lng\":0.2732390452}", "m");
 		insertUser("Flordelis", "Rivard", 4, null, "flordelis.rivard@mail.com", "62 rue de Lille", "91200", "Athis-mons", "0605009003", 0, "", "{\"lat\":48.34822844, \"lng\":0.1831016686}", "");
-		insertUser("Alain", "Dostie", 4, null, "alain.dostie@mail.com", "82 cours Jean Jaures", "33200", "Bordeaux", "0605009004", 0, "", "{\"lat\":47.1212414, \"lng\":2.011587111}", "");
-		insertUser("Nadine", "Jolicoeur", 4, null, "nadine.jolicoeur@mail.com", "83 cours Jean Jaures", "33200", "Bordeaux", "0605009005", 0, "", "{\"lat\":45.05866281, \"lng\":1.673090367}", "");
-		insertUser("Christiane", "Bureau", 4, null, "christiane.bureau@mail.com", "84 cours Jean Jaures", "33200", "Bordeaux", "0605009006", 1, "", "{\"lat\":46.58745702, \"lng\":2.545111497}", "");
-		insertUser("Mallory", "Lajoie", 4, null, "mallory.lajoie@mail.com", "1 rue Beauvau", "13004", "Marseille", "0605009007", 1, "11125567913548", "{\"lat\":45.58119498, \"lng\":2.843656095}", "");
-		insertUser("Ormazd", "Bordeleau", 4, null, "ormazd.bordeleau@mail.com", "2 rue Beauvau", "13004", "Marseille", "0605009008", 1, "", "{\"lat\":48.08885658, \"lng\":2.847936922}", "");
-		insertUser("Hamilton", "Vallée", 4, null, "hamilton.vallée@mail.com", "3 rue Beauvau", "13004", "Marseille", "0605009009", 0, "", "{\"lat\":48.47069639, \"lng\":3.495069202}", "");
-		insertUser("Anastasie", "Pellerin", 4, null, "anastasie.pellerin@mail.com", "11 Place de la Gare", "77380", "Combs-la-ville", "0605009010", 0, "", "{\"lat\":48.77484484, \"lng\":2.172838908}", "");
-		insertUser("Laurence", "Brochu", 4, null, "laurence.brochu@mail.com", "12 Place de la Gare", "77380", "Combs-la-ville", "0605009011", 1, "", "{\"lat\":48.19284916, \"lng\":2.447820201}", "");
-		insertUser("Clémence", "Laux", 4, null, "clémence.laux@mail.com", "13 Place de la Gare", "77380", "Combs-la-ville", "0605009012", 1, "", "{\"lat\":48.72424468, \"lng\":3.543523863}", "");
+		insertUser("Alain", "Dostie", 4, null, "alain.dostie@mail.com", "82 cours Jean Jaures", "33200", "Bordeaux", "0605009004", 0, "", "{\"lat\":47.1212414, \"lng\":2.011587111}", "m");
+		insertUser("Nadine", "Jolicoeur", 4, null, "nadine.jolicoeur@mail.com", "83 cours Jean Jaures", "33200", "Bordeaux", "0605009005", 0, "", "{\"lat\":45.05866281, \"lng\":1.673090367}", "f");
+		insertUser("Christiane", "Bureau", 4, null, "christiane.bureau@mail.com", "84 cours Jean Jaures", "33200", "Bordeaux", "0605009006", 1, "", "{\"lat\":46.58745702, \"lng\":2.545111497}", "f");
+		insertUser("Mallory", "Lajoie", 4, null, "mallory.lajoie@mail.com", "1 rue Beauvau", "13004", "Marseille", "0605009007", 1, "11125567913548", "{\"lat\":45.58119498, \"lng\":2.843656095}", "f");
+		insertUser("Ormazd", "Bordeleau", 4, null, "ormazd.bordeleau@mail.com", "2 rue Beauvau", "13004", "Marseille", "0605009008", 1, "", "{\"lat\":48.08885658, \"lng\":2.847936922}", "m");
+		insertUser("Hamilton", "Vallée", 4, null, "hamilton.vallée@mail.com", "3 rue Beauvau", "13004", "Marseille", "0605009009", 0, "", "{\"lat\":48.47069639, \"lng\":3.495069202}", "m");
+		insertUser("Anastasie", "Pellerin", 4, null, "anastasie.pellerin@mail.com", "11 Place de la Gare", "77380", "Combs-la-ville", "0605009010", 0, "", "{\"lat\":48.77484484, \"lng\":2.172838908}", "f");
+		insertUser("Laurence", "Brochu", 4, null, "laurence.brochu@mail.com", "12 Place de la Gare", "77380", "Combs-la-ville", "0605009011", 1, "", "{\"lat\":48.19284916, \"lng\":2.447820201}", "f");
+		insertUser("Clémence", "Laux", 4, null, "clémence.laux@mail.com", "13 Place de la Gare", "77380", "Combs-la-ville", "0605009012", 1, "", "{\"lat\":48.72424468, \"lng\":3.543523863}", "f");
 		insertUser("Darcy", "Beauchamp", 4, null, "darcy.beauchamp@mail.com", "62 Avenue des Tuileries", "78280", "Guyancourt", "0605009013", 0, "", "{\"lat\":45.7946399, \"lng\":0.2577874021}", "");
 		insertUser("Telford", "Guernon", 4, null, "telford.guernon@mail.com", "63 Avenue des Tuileries", "78280", "Guyancourt", "0605009014", 1, "", "{\"lat\":47.10636329, \"lng\":3.371669043}", "");
 		insertUser("Daisi", "Labrecque", 4, null, "daisi.labrecque@mail.com", "64 Avenue des Tuileries", "78280", "Guyancourt", "0605009015", 0, "", "{\"lat\":46.61559899, \"lng\":1.207591572}", "");
@@ -228,7 +228,7 @@ public class InitDataSet {
 		insertUser("Talon", "Desforges", 4, null, "talon.desforges@mail.com", "40 rue Gontier-Patin", "80100", "Abbeville", "0605009017", 0, "", "{\"lat\":48.06920319, \"lng\":2.614300265}", "");
 		insertUser("Inès", "Vaillancour", 4, null, "inès.vaillancour@mail.com", "41 rue Gontier-Patin", "80100", "Abbeville", "0605009018", 1, "", "{\"lat\":46.4739071, \"lng\":3.184529284}", "");
 		insertUser("Favor", "Veronneau", 4, null, "favor.veronneau@mail.com", "54 rue des Dunes", "35400", "Saint-malo", "0605009019", 0, "", "{\"lat\":46.93401727, \"lng\":3.497548254}", "");
-		insertUser("Christian", "Bérard", 4, null, "christian.bérard@mail.com", "55 rue des Dunes", "35400", "Saint-malo", "0605009020", 1, "", "{\"lat\":46.966314, \"lng\":3.148950123}", "");
+		insertUser("Christian", "Bérard", 4, null, "christian.bérard@mail.com", "55 rue des Dunes", "35400", "Saint-malo", "0605009020", 1, "", "{\"lat\":46.966314, \"lng\":3.148950123}", "m");
 		insertUser("Solaine", "Arnoux", 4, null, "solaine.arnoux@mail.com", "56 rue des Dunes", "35400", "Saint-malo", "0605009021", 0, "", "{\"lat\":46.12930614, \"lng\":3.781048075}", "");
 		insertUser("Aurore", "Tanguay", 4, null, "aurore.tanguay@mail.com", "63 boulevard Bryas", "59170", "Croix", "0605009022", 1, "", "{\"lat\":45.17589558, \"lng\":2.928655496}", "");
 		insertUser("Suzette", "Ailleboust", 4, null, "suzette.ailleboust@mail.com", "64 boulevard Bryas", "59170", "Croix", "0605009023", 0, "", "{\"lat\":47.61000453, \"lng\":3.454370555}", "");
@@ -318,7 +318,7 @@ public class InitDataSet {
 		insertProposal("Garde d'enfants", "J' ai mon bep carrières sanitaires et sociales et mon cap petite enfance. Je garde des enfants depuis plus de 10 ans. Je suis disponible , le week end, pendant les vacances et à partir de juillet tout le temps.", "garde_enfant.png", 12, 12, 27);
 		insertProposal("Garde d'enfants", " Je fais du babysitting, du soutien scolaire spécialement en mathématiques et en sciences, j'ai été serveuse pendant 5 ans à côté de mes études. ", "garde_enfant.png", 12, 12, 98);
 		insertProposal("Garde d'enfants", "Habituée aux baby sitting pour enfants de tous âges je vous propose mes services en toute sécurité je peux me rendre disponible facilement.", "garde_enfant.png", 12, 12, 9);
-		insertProposal("Coiffure", "Coiffeuse à domicile ou en déplacement, disponible et efficace.", "bien_etre.png", 20, 5, 79);
+		insertProposal("Coiffure", "Coiffeur à domicile ou en déplacement, disponible et efficace.", "bien_etre.png", 20, 5, 79);
 		insertProposal("Soins esthétiques", "Esthéticienne certifiée et spécialisée dans les publics fragiles (profession para médicale reconnue comme soin de support en oncologie), les soins que je propose sont adaptés à la personne et à sa situation.", "bien_etre.png", 35, 4, 72);
 		insertProposal("Soins esthétiques", "Coucou les filles , je vous propose le rehaussement des cils qui sublimera votre regard. Avec teinture si vous le souhaitez. Le rehaussement dure entre 2 et 3 mois. ", "bien_etre.png", 30, 4, 14);
 		insertProposal("Soins esthétiques", "Je vous propose des soins esthétiques de qualité avec des produits professionnels (épilation toutes zones, soins de mains et des pieds, maquillage, conseils en image), je suis aussi prothésiste ongulaire.", "bien_etre.png", 60, 4, 39);
@@ -542,7 +542,7 @@ public class InitDataSet {
 				String img = "men/" + num + ".jpg";
 				user.setImage(img);
 			}
-		} else {
+		} else if (gender.equals("f")) {
 			if (fCounter < 120) {
 				fCounter++;
 				String num = String.format("%02d", fCounter);
