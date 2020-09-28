@@ -4,6 +4,8 @@ import fr.eql.teama.catalogue.dao.*;
 import fr.eql.teama.catalogue.entities.*;
 import fr.eql.teama.catalogue.service.CredentialsService;
 import fr.eql.teama.catalogue.service.LogstashService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
@@ -51,7 +53,7 @@ public class InitDataSet {
 	private boolean useLogstash;
 
 	@PostConstruct()
-	public void initData() throws NoSuchAlgorithmException {
+	public void initData() throws NoSuchAlgorithmException, JSONException {
 		// Insert categories
 		Category soins = insertCategory(1, "Soin & Bien-être", "bien_etre.png");
 		insertCategory(2, "Massage", soins);
@@ -520,7 +522,7 @@ public class InitDataSet {
 	}
 
 	private void insertUser(String firstName, String lastName, float globalRating, String image, String email, String address, String postalCode,
-							  String city, String phone, int premium, String registrationNumber, String geoloc, String gender) {
+							  String city, String phone, int premium, String registrationNumber, String geoloc, String gender) throws JSONException {
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
@@ -533,7 +535,9 @@ public class InitDataSet {
 		user.setPremium(premium == 1);
 		user.setRegistrationNumber(registrationNumber);
 		user.setRole(UserRole.DEFAULT);
-		user.setGeolocation(geoloc);
+		JSONObject obj = new JSONObject(geoloc);
+		Geolocation geo = new Geolocation(obj.getDouble("lat"), obj.getDouble("lng"));
+		user.setGeolocation(geo);
 
 		if (gender.equals("m")) {
 			if (mCounter < 120) {

@@ -54,7 +54,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    private String geolocation;
+    @Embedded
+    private Geolocation geolocation;
 
     public User (String firstName) {
         this.firstName = firstName;
