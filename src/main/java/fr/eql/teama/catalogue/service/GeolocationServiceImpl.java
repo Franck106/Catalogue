@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
+import fr.eql.teama.catalogue.entities.Geolocation;
 import fr.eql.teama.catalogue.entities.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +28,7 @@ public class GeolocationServiceImpl implements GeolocationService, InitializingB
 
     @Override
     public User addGeolocationToUser(User user) {
-        user.setGeolocation("");
+        user.setGeolocation(null);
 
         try {
             String fullAddress = user.getAddress() + " " + user.getPostCode() + " " + user.getCity();
@@ -36,7 +37,8 @@ public class GeolocationServiceImpl implements GeolocationService, InitializingB
 
             if (results.length > 0) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                user.setGeolocation(gson.toJson(results[0].geometry.location));
+                Geolocation geo = new Geolocation(results[0].geometry.location.lat, results[0].geometry.location.lng);
+                user.setGeolocation(geo);
             }
 
         } catch(Exception e) {
@@ -56,17 +58,17 @@ public class GeolocationServiceImpl implements GeolocationService, InitializingB
     }
 
     @Override
-    public double getDistance(String locationA, String locationB) {
+    public double getDistance(Geolocation locationA, Geolocation locationB) {
         try {
-            JacksonJsonParser parser = new JacksonJsonParser();
+           // JacksonJsonParser parser = new JacksonJsonParser();
 
-            Map<String, Object> locA = parser.parseMap(locationA);
-            Map<String, Object> locB = parser.parseMap(locationB);
+          //  Map<String, Object> locA = parser.parseMap(locationA);
+           // Map<String, Object> locB = parser.parseMap(locationB);
 
-            Double latA = (Double)locA.get("lat");
-            Double lngA = (Double)locA.get("lng");
-            Double latB = (Double)locB.get("lat");
-            Double lngB = (Double)locB.get("lng");
+            Double latA = locationA.getLat();
+            Double lngA = locationA.getLng();
+            Double latB = locationB.getLat();
+            Double lngB = locationB.getLng();
 
             double theta = lngA - lngB;
             double distance = (Math.sin(Math.toRadians(latA)) *

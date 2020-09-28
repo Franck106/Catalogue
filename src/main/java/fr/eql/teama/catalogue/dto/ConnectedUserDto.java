@@ -1,5 +1,6 @@
 package fr.eql.teama.catalogue.dto;
 
+import fr.eql.teama.catalogue.entities.Geolocation;
 import fr.eql.teama.catalogue.entities.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class ConnectedUserDto {
     private Boolean admin;
     private String registrationNumber = "";
     private Float globalRating;
-    private String geolocation = "";
+    private Geolocation geolocation;
 
     private String login = "";
     private String role = "DEFAULT";

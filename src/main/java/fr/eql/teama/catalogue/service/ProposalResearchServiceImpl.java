@@ -3,8 +3,10 @@ package fr.eql.teama.catalogue.service;
 import fr.eql.teama.catalogue.dao.ProposalRepository;
 import fr.eql.teama.catalogue.dto.ProposalResearchRequest;
 import fr.eql.teama.catalogue.dto.ProposalResearchResponse;
+import fr.eql.teama.catalogue.entities.Geolocation;
 import fr.eql.teama.catalogue.entities.Proposal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,11 +55,17 @@ public class ProposalResearchServiceImpl implements ProposalResearchService {
                 if (proposal.getMaxDistance() == 0) {
                     return true;
                 }
+                JacksonJsonParser parser = new JacksonJsonParser();
 
+                Map<String, Object> req = parser.parseMap(request.getSearchLocation());
+                Geolocation geolocation = new Geolocation();
+                geolocation.setLat((Double) req.get("lat"));
+                geolocation.setLng((Double) req.get("lng"));
+                Map<String, Object> locB = parser.parseMap(request.getSearchLocation());
                 // Determine distance between search location and provider's location
                 double distance = geolocationService.getDistance(
                         proposal.getProvider().getGeolocation(),
-                        request.getSearchLocation());
+                       geolocation);
 
                 return distance < proposal.getMaxDistance();
             }).collect(Collectors.toList());

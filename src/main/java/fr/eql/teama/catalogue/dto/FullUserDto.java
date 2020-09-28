@@ -1,6 +1,7 @@
 package fr.eql.teama.catalogue.dto;
 
 import fr.eql.teama.catalogue.entities.Credentials;
+import fr.eql.teama.catalogue.entities.Geolocation;
 import fr.eql.teama.catalogue.entities.User;
 import fr.eql.teama.catalogue.entities.UserRole;
 import lombok.Getter;
@@ -22,7 +23,7 @@ public class FullUserDto {
     private String registrationNumber = "";
     private Float globalRating;
     private String image = "";
-    private String geolocation = "";
+    private Geolocation geolocation;
 
     private String login = "";
     private String password = "";
