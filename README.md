@@ -1,4 +1,4 @@
-# al35-project1
+# School Project
 
 Public AWS URL : 
 
